@@ -9563,6 +9563,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  dashSpeed: 200
+  dashCooldown: 3
 --- !u!143 &2143901829
 CharacterController:
   m_ObjectHideFlags: 0
