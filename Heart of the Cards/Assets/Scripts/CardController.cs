@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Enum representing the value of a card
 public enum Value
@@ -56,7 +57,9 @@ static class Extensions
 public class CardController : MonoBehaviour
 {
     List<Card> deck;
+    List<Card> hand;
     public int numDecks = 1;
+    public Text handText;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,8 +67,20 @@ public class CardController : MonoBehaviour
         deck = new List<Card>();
         FillDeck(deck, numDecks);
         Extensions.Shuffle<Card>(deck);
+
+        //Deal first hand
+        hand = new List<Card>();
+        hand.Capacity = 5;
+        Deal(5);
+        handText.text = printHand(hand);
         //Prints out entire deck
-        foreach (Card c in deck)
+        //foreach (Card c in deck)
+        //{
+        //    Debug.Log(c.printCard());
+        //}
+
+        //Prints out hand
+        foreach(Card c in hand)
         {
             Debug.Log(c.printCard());
         }
@@ -92,5 +107,35 @@ public class CardController : MonoBehaviour
                 }
             }
         }
+    }
+
+    //Deals a specified amount of cards
+    void Deal(int n)
+    {
+        for(int i = 0; i < n; ++i)
+        {
+            if (deck.Count > 0)
+            {
+                hand.Add(deck[0]);
+                deck.RemoveAt(0);
+            }
+            else
+            {
+                Debug.Log("Deck empty");
+            }
+        }
+    }
+
+    //Prints the current hand
+    private string printHand(List<Card> hand)
+    {
+        string result = "";
+
+        foreach(Card c in hand)
+        {
+            result += c.printCard() + " ";
+        }
+
+        return result;
     }
 }
