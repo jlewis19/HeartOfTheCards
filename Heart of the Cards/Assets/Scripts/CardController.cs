@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CardController : MonoBehaviour
 {
     List<Card> deck;
-    List<Card> hand;
+    Card[] hand;
     public int numDecks = 1;
     public float discardCooldown = 5f;
     public Text handText;
@@ -16,6 +16,7 @@ public class CardController : MonoBehaviour
     bool canDiscard = true;
     float discardCDTimer = 0f;
     int handValue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,14 +24,17 @@ public class CardController : MonoBehaviour
         deck = new List<Card>();
         FillDeck(deck, numDecks);
         Extensions.Shuffle<Card>(deck);
+        hand = new Card[5];
 
         //Deal first hand
-        hand = new List<Card>();
-        hand.Capacity = 5;
         Deal(5);
-        handText.text = printHand(hand);
+        //handText.text = printHand(hand);
+        printHand(hand);
         handValue = AddedValue(hand);
         valueText.text = "Added Value: " + handValue;
+
+        var projectile = gameObject.GetComponentInChildren<FireProjectile>();
+        projectile.damage = handValue;
         //Prints out entire deck
         //foreach (Card c in deck)
         //{
@@ -80,9 +84,9 @@ public class CardController : MonoBehaviour
             //Iterate through suites
             foreach(Suite suite in Suite.GetValues(typeof(Suite))) {
                 //Iterate through values
-                foreach(Value value in Value.GetValues(typeof(Value)))
+                for (int j = 1; j < 13; j++)
                 {
-                    deck.Add(new Card(value, suite));
+                    deck.Add(new Card(j, suite));
                 }
             }
         }
@@ -95,7 +99,7 @@ public class CardController : MonoBehaviour
         {
             if (deck.Count > 0)
             {
-                hand.Add(deck[0]);
+                hand[i] = deck[0];
                 deck.RemoveAt(0);
             }
             else
@@ -106,158 +110,106 @@ public class CardController : MonoBehaviour
     }
 
     //Prints the current hand
-    private string printHand(List<Card> hand)
+    private void printHand(Card[] hand)
     {
-        string result = "";
-
+        int x = 290;
         foreach(Card c in hand)
         {
-            result += c.printCard() + " ";
+            //Debug.Log(c.printCard());
+            GameObject card = GameObject.Find(c.printCard());
+            RectTransform tf = card.GetComponent<RectTransform>();
+            tf.SetPositionAndRotation(new Vector3(300 + x, 50), tf.rotation);
+            x += 65;
         }
-
-        return result;
     }
 
     //Handles user input related to discarding cards from your hand
     //TODO: FIX THIS TERRIBLE CODE
     private void HandleDiscard()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            hand.RemoveAt(0);
-            Deal(1);
-            canDiscard = false;
-            handText.text = printHand(hand);
-            handValue = AddedValue(hand);
-            valueText.text = "Added Value: " + handValue;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            hand.RemoveAt(1);
-            Deal(1);
-            canDiscard = false;
-            handText.text = printHand(hand);
-            handValue = AddedValue(hand);
-            valueText.text = "Added Value: " + handValue;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            hand.RemoveAt(2);
-            Deal(1);
-            canDiscard = false;
-            handText.text = printHand(hand);
-            handValue = AddedValue(hand);
-            valueText.text = "Added Value: " + handValue;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            hand.RemoveAt(3);
-            Deal(1);
-            canDiscard = false;
-            handText.text = printHand(hand);
-            handValue = AddedValue(hand);
-            valueText.text = "Added Value: " + handValue;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            hand.RemoveAt(4);
-            Deal(1);
-            canDiscard = false;
-            handText.text = printHand(hand);
-            handValue = AddedValue(hand);
-            valueText.text = "Added Value: " + handValue;
+        int index = -1;
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            index = 0;
+        } else if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            index = 1;
+        } else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            index = 2;
+        } else if (Input.GetKeyDown(KeyCode.Alpha4)) {
+            index = 3;
+        } else if (Input.GetKeyDown(KeyCode.Alpha5)) {
+            index = 4;
         }
 
+        if (index != -1) {
+            hand[index].discardQueue = !hand[index].discardQueue;
+            GameObject card = GameObject.Find(hand[index].printCard());
+            RectTransform tf = card.GetComponent<RectTransform>();
+            if (hand[index].discardQueue) {
+                tf.SetPositionAndRotation(new Vector3(tf.position.x, 30), tf.rotation);
+            } else {
+                tf.SetPositionAndRotation(new Vector3(tf.position.x, 50), tf.rotation);
+            }
+        }
+        
+        if (Input.GetKeyDown(KeyCode.E)) {
+            for (int i = 0; i < 5; i++) {
+                if (hand[i].discardQueue) {
+                    Card c = hand[i];
+                    hand[i] = deck[0];
+                    GameObject card = GameObject.Find(c.printCard());
+                    RectTransform tf = card.GetComponent<RectTransform>();
+                    tf.SetPositionAndRotation(new Vector3(20, -100), tf.rotation);
+                    deck.RemoveAt(0);
+                }
+            }
+
+            canDiscard = false;
+            printHand(hand);
+            handValue = AddedValue(hand);
+            valueText.text = "Added Value: " + handValue;
+            var projectile = gameObject.GetComponentInChildren<FireProjectile>();
+            projectile.damage = handValue;
+        }
     }
 
     //Adds up the value of hands
-    //Faces and Ace: J = 11, Q = 12, K = 13, A = 14
-    int AddedValue(List<Card> hand)
+    int AddedValue(Card[] hand)
     {
         int total = 0;
         foreach (Card c in hand)
         {
-            var value = c.value;
-            switch (value)
-            {
-                case Value.Ace:
-                    total += 14;
-                    break;
-                case Value.Two:
-                    total += 2;
-                    break;
-                case Value.Three:
-                    total += 3;
-                    break;
-                case Value.Four:
-                    total += 4;
-                    break;
-                case Value.Five:
-                    total += 5;
-                    break;
-                case Value.Six:
-                    total += 6;
-                    break;
-                case Value.Seven:
-                    total += 7;
-                    break;
-                case Value.Eight:
-                    total += 8;
-                    break;
-                case Value.Nine:
-                    total += 9;
-                    break;
-                case Value.Ten:
-                    total += 10;
-                    break;
-                case Value.Jack:
-                    total += 11;
-                    break;
-                case Value.Queen:
-                    total += 12;
-                    break;
-                case Value.King:
-                    total += 13;
-                    break;
-                default:
-                    total += 0;
-                    break;
-            }
+            total += c.value;
         }
 
         return total;
     }
 }
 
-//Enum representing the value of a card
-public enum Value
-{
-    Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King
-}
-
 //Enum representing the suite of a card
 public enum Suite
 {
-    Diamonds, Hearts, Spades, Clubs
+    Diamond, Heart, Spade, Club
 }
 
 //Class representing an individual card
 public class Card
 {
-    public Value value;
+    public int value;
     public Suite suite;
+    public bool discardQueue;
 
     //Constructor
-    public Card(Value v, Suite s)
+    public Card(int v, Suite s)
     {
         value = v;
         suite = s;
+        discardQueue = false;
     }
 
     //Prints a card as "value of suite"
     public string printCard()
     {
-        return value + " of " + suite;
+        return suite + value.ToString();
     }
 }
 

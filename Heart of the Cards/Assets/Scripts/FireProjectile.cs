@@ -8,10 +8,11 @@ public class FireProjectile : MonoBehaviour
     public GameObject projectilePrefab;
     public float projectileSpeed = 100f;
     public Image reticleImage;
+    public int damage;
     // Start is called before the first frame update
     void Start()
     {
-        
+        damage = 10;
     }
 
     // Update is called once per frame
@@ -21,6 +22,9 @@ public class FireProjectile : MonoBehaviour
         {
             GameObject projectile = Instantiate(projectilePrefab, 
                 transform.position + transform.forward, transform.rotation) as GameObject;
+
+            var projectileDamage = projectile.GetComponent<ProjectileBehavior>();
+            projectileDamage.damage = damage;
 
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
