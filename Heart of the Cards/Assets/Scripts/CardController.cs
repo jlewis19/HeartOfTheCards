@@ -16,6 +16,7 @@ public class CardController : MonoBehaviour
     bool canDiscard = true;
     float discardCDTimer = 0f;
     int handValue;
+    ProjectileBehavior projectileBehavior;
 
     // Start is called before the first frame update
     void Start()
@@ -26,15 +27,18 @@ public class CardController : MonoBehaviour
         Extensions.Shuffle<Card>(deck);
         hand = new Card[5];
 
+        projectileBehavior = FindObjectOfType<ProjectileBehavior>();
+
         //Deal first hand
         Deal(5);
         //handText.text = printHand(hand);
         printHand(hand);
+        Hand handVal = FindHand(hand);
+        print(handVal);
+        UpdateProjectileDamage(handVal);
+
         handValue = AddedValue(hand);
         valueText.text = "Added Value: " + handValue;
-
-        var projectile = gameObject.GetComponentInChildren<FireProjectile>();
-        projectile.damage = handValue;
         //Prints out entire deck
         //foreach (Card c in deck)
         //{
@@ -52,23 +56,18 @@ public class CardController : MonoBehaviour
     void Update()
     {
         //TODO: Make it so that the user can discard more than 1 card at a time
-        if (canDiscard)
-        {
+        if (canDiscard) {
             HandleDiscard();
-        } else
-        {
-            if (discardCDTimer >= discardCooldown)
-            {
+        } else {
+            if (discardCDTimer >= discardCooldown) {
                 canDiscard = true;
                 discardCDTimer = 0;
-            } else
-            {
+            } else {
                 discardCDTimer += Time.deltaTime;
             }
         }
 
-        if (deck.Count == 0)
-        {
+        if (deck.Count == 0) {
             Debug.Log("Re-shuffling deck");
             FillDeck(deck, numDecks);
             Extensions.Shuffle<Card>(deck);
@@ -84,7 +83,7 @@ public class CardController : MonoBehaviour
             //Iterate through suites
             foreach(Suite suite in Suite.GetValues(typeof(Suite))) {
                 //Iterate through values
-                for (int j = 1; j < 13; j++)
+                for (int j = 1; j <= 13; j++)
                 {
                     deck.Add(new Card(j, suite));
                 }
@@ -125,8 +124,7 @@ public class CardController : MonoBehaviour
 
     //Handles user input related to discarding cards from your hand
     //TODO: FIX THIS TERRIBLE CODE
-    private void HandleDiscard()
-    {
+    private void HandleDiscard() {
         int index = -1;
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             index = 0;
@@ -165,16 +163,46 @@ public class CardController : MonoBehaviour
 
             canDiscard = false;
             printHand(hand);
+
+            // finds the value of this hand
+            Hand handVal = FindHand(hand);
+            print(handVal);
+            UpdateProjectileDamage(handVal);
+
             handValue = AddedValue(hand);
             valueText.text = "Added Value: " + handValue;
-            var projectile = gameObject.GetComponentInChildren<FireProjectile>();
-            projectile.damage = handValue;
         }
     }
 
+    void UpdateProjectileDamage(Hand handVal) {
+        int damage;
+        if (handVal == Hand.HighCard) {
+            damage = 5;
+        } else if (handVal == Hand.Pair) {
+            damage = 10;
+        } else if (handVal == Hand.TwoPair) {
+            damage = 15;
+        } else if (handVal == Hand.ThreeOfAKind) {
+            damage = 25;
+        } else if (handVal == Hand.Straight) {
+            damage = 40;
+        } else if (handVal == Hand.Flush) {
+            damage = 50;
+        } else if (handVal == Hand.FullHouse) {
+            damage = 75;
+        } else if (handVal == Hand.FourOfAKind) {
+            damage = 100;
+        } else if (handVal == Hand.StraightFlush) {
+            damage = 150;
+        } else {
+            damage = 200;
+        }
+        var projectile = gameObject.GetComponentInChildren<FireProjectile>();
+        projectile.damage = damage;
+    }
+
     //Adds up the value of hands
-    int AddedValue(Card[] hand)
-    {
+    int AddedValue(Card[] hand) {
         int total = 0;
         foreach (Card c in hand)
         {
@@ -183,12 +211,98 @@ public class CardController : MonoBehaviour
 
         return total;
     }
+
+    Hand FindHand(Card[] hand) {
+        int[] numPerRank = new int[13];
+        for (int i = 0; i < hand.Length; i++) {
+            int index = hand[i].value - 2;
+            if (index == -1) {
+                index = 12;
+            }
+            numPerRank[index] += 1;
+        }
+
+        int pairs = 0;
+        bool three = false;
+        bool four = false;
+        int streak = 0;
+        bool straight = false;
+        for (int i = 0; i < numPerRank.Length; i++) {
+            if (numPerRank[i] == 1) {
+                streak++;
+                if (streak == 5) {
+                    straight = true;
+                }
+            } else {
+                streak = 0;
+            }
+            if (numPerRank[i] == 2) {
+                pairs++;
+            } else if (numPerRank[i] == 3) {
+                three = true;
+            } else if (numPerRank[i] == 4) {
+                four = true;
+            }
+        }
+        bool flush = CheckFlush(hand);
+
+        if (straight && flush) {
+            if (HighCard(hand) == 1) {
+                return Hand.RoyalFlush;
+            } else {
+                return Hand.StraightFlush;
+            }
+        } else if (four) {
+            return Hand.FourOfAKind;
+        } else if (pairs == 1 && three) {
+            return Hand.FullHouse;
+        } else if (flush) {
+            return Hand.Flush;
+        } else if (straight) {
+            return Hand.Straight;
+        } else if (three) {
+            return Hand.ThreeOfAKind;
+        } else if (pairs == 2) {
+            return Hand.TwoPair;
+        } else if (pairs == 1) {
+            return Hand.Pair;
+        } else {
+            return Hand.HighCard;
+        }
+    }
+
+    bool CheckFlush(Card[] hand) {
+        Suite suite = hand[0].suite;
+        for (int i = 1; i < hand.Length; i++) {
+            if (hand[i].suite != suite) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    int HighCard(Card[] hand) {
+        int max = -1;
+        for (int i = 0; i < hand.Length; i++) {
+            if (hand[i].value == 1) {
+                return 1;
+            }
+            if (hand[i].value > max) {
+                max = hand[i].value;
+            }
+        }
+        return max;
+    }
 }
 
 //Enum representing the suite of a card
-public enum Suite
-{
+public enum Suite {
     Diamond, Heart, Spade, Club
+}
+
+//Enum representing types of hands
+public enum Hand {
+    HighCard, Pair, TwoPair, ThreeOfAKind, Straight, Flush, FullHouse, FourOfAKind, StraightFlush, RoyalFlush
 }
 
 //Class representing an individual card
