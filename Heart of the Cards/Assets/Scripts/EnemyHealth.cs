@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
     public int startingHealth = 100;
+    public Slider healthBar;
 
     int currentHealth;
 
@@ -12,6 +14,8 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         currentHealth = startingHealth;
+        healthBar.maxValue = startingHealth;
+        SetHealthBar();
     }
 
     // Update is called once per frame
@@ -24,6 +28,12 @@ public class EnemyHealth : MonoBehaviour
 
     public void takeDamage(int amount) {
         currentHealth -= amount;
+        SetHealthBar();
         Debug.Log("Current enemy health: " + currentHealth);
+    }
+
+    private void SetHealthBar()
+    {
+        healthBar.value = currentHealth;
     }
 }
