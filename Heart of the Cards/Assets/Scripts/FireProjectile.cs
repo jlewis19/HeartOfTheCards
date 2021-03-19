@@ -8,18 +8,17 @@ public class FireProjectile : MonoBehaviour
     public GameObject projectilePrefab;
     public float projectileSpeed = 100f;
     public Image reticleImage;
-    public int damage;
+    public int damage = 10;
+
     // Start is called before the first frame update
-    void Start()
-    {
-        damage = 10;
+    void Start() {
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) 
-        {
+        if (Input.GetButtonDown("Fire1") && gameObject.GetComponentInParent<CardController>().hasHand) {
             GameObject projectile = Instantiate(projectilePrefab, 
                 transform.position + transform.forward, transform.rotation) as GameObject;
 
@@ -31,6 +30,8 @@ public class FireProjectile : MonoBehaviour
             rb.AddForce(transform.forward * projectileSpeed, ForceMode.VelocityChange);
 
             projectile.transform.SetParent(GameObject.FindGameObjectWithTag("ProjectileParent").transform);
+
+            gameObject.GetComponentInParent<CardController>().ThrowProjectile();
         }
     }
 }
