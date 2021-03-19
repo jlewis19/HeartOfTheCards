@@ -13,11 +13,13 @@ public class CardController : MonoBehaviour
     public Text handText;
     public Text valueText;
     public int distanceToNextCard = 65;
+    public float projectileCooldown = 2f;
+    public bool hasHand = true;
 
     bool canDiscard = true;
     float discardCDTimer = 0f;
     int handValue;
-    ProjectileBehavior projectileBehavior;
+    float timeElapsed = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +29,6 @@ public class CardController : MonoBehaviour
         FillDeck(deck, numDecks);
         Extensions.Shuffle<Card>(deck);
         hand = new Card[5];
-
-        projectileBehavior = FindObjectOfType<ProjectileBehavior>();
 
         //Deal first hand
         Deal(5);
@@ -56,6 +56,18 @@ public class CardController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!hasHand) {
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed >= projectileCooldown) {
+                Deal(5);
+                hasHand = true;
+                timeElapsed = 0;
+                printHand(hand);
+            } else {
+                return;
+            }
+        }
+
         //TODO: Make it so that the user can discard more than 1 card at a time
         if (canDiscard) {
             HandleDiscard();
@@ -106,6 +118,19 @@ public class CardController : MonoBehaviour
             {
                 Debug.Log("Deck empty");
             }
+        }
+    }
+
+    public void ThrowProjectile() {
+        UnPrintHand(hand);
+        hasHand = false;
+    }
+
+    private void UnPrintHand(Card[] hand) {
+        foreach(Card c in hand) {
+            GameObject card = GameObject.Find(c.printCard());
+            RectTransform tf = card.GetComponent<RectTransform>();
+            tf.SetPositionAndRotation(new Vector3(20, -100), tf.rotation);
         }
     }
 
