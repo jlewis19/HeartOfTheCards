@@ -8,6 +8,8 @@ TagManager:
   - Projectile
   - Enemy
   - Waypoint
+  - AntiCampingProjectile
+  - Beam
   layers:
   - Default
   - TransparentFX
