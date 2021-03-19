@@ -12,6 +12,7 @@ public class CardController : MonoBehaviour
     public float discardCooldown = 5f;
     public Text handText;
     public Text valueText;
+    public int distanceToNextCard = 65;
 
     bool canDiscard = true;
     float discardCDTimer = 0f;
@@ -112,13 +113,24 @@ public class CardController : MonoBehaviour
     private void printHand(Card[] hand)
     {
         int x = 290;
+        int z = 0;
         foreach(Card c in hand)
         {
             //Debug.Log(c.printCard());
             GameObject card = GameObject.Find(c.printCard());
+
+            Canvas canvas;
+            if (!card.TryGetComponent<Canvas>(out canvas)) {
+                canvas = card.AddComponent<Canvas>();
+                canvas.overrideSorting = true;
+            }
+
+            canvas.sortingOrder = z;
+
             RectTransform tf = card.GetComponent<RectTransform>();
             tf.SetPositionAndRotation(new Vector3(300 + x, 50), tf.rotation);
-            x += 65;
+            x += distanceToNextCard;
+            z++;
         }
     }
 
@@ -143,7 +155,7 @@ public class CardController : MonoBehaviour
             GameObject card = GameObject.Find(hand[index].printCard());
             RectTransform tf = card.GetComponent<RectTransform>();
             if (hand[index].discardQueue) {
-                tf.SetPositionAndRotation(new Vector3(tf.position.x, 30), tf.rotation);
+                tf.SetPositionAndRotation(new Vector3(tf.position.x, 70), tf.rotation);
             } else {
                 tf.SetPositionAndRotation(new Vector3(tf.position.x, 50), tf.rotation);
             }
@@ -153,11 +165,10 @@ public class CardController : MonoBehaviour
             for (int i = 0; i < 5; i++) {
                 if (hand[i].discardQueue) {
                     Card c = hand[i];
-                    hand[i] = deck[0];
                     GameObject card = GameObject.Find(c.printCard());
                     RectTransform tf = card.GetComponent<RectTransform>();
                     tf.SetPositionAndRotation(new Vector3(20, -100), tf.rotation);
-                    deck.RemoveAt(0);
+                    DealCardAt(i);
                 }
             }
 
@@ -269,6 +280,34 @@ public class CardController : MonoBehaviour
         } else {
             return Hand.HighCard;
         }
+    }
+
+    void DealCardAt(int i) {
+        if (deck.Count == 0) {
+            FillDeck(deck, 1);
+            Extensions.Shuffle<Card>(deck);
+        }
+
+        int j = 0;
+        while (Contains(hand, deck[j])) {
+            j++;
+            if (j >= deck.Count) {
+                FillDeck(deck, 1);
+                Extensions.Shuffle<Card>(deck);
+            }
+        }
+
+        hand[i] = deck[j];
+        deck.RemoveAt(j);
+    }
+
+    bool Contains(Card[] hand, Card card) {
+        for (int i = 0; i < hand.Length; i++) {
+            if (hand[i].suite == card.suite && hand[i].value == card.value) {
+                return true;
+            }
+        }
+        return false;
     }
 
     bool CheckFlush(Card[] hand) {
