@@ -7,10 +7,12 @@ public class EnemyAttacks : MonoBehaviour
     [Header("Boss Attack Damage Values")]
     public static int AntiCampingProjectileDamage = 10;
     public static int BeamDamage = 2;
+    public static int WaveDamage = 20;
 
     [Header("Projectile Prefabs")]
     public GameObject antiCampingProjectile;
     public GameObject beamProjectile;
+    public GameObject waveProjectile;
 
     [Header("Beam Attack Related")]
     public Transform centerOfRoom;
@@ -19,6 +21,7 @@ public class EnemyAttacks : MonoBehaviour
 
     bool antiCampingSpawned = false;
     bool beamSpawned = false;
+    bool waveSpawned = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +32,9 @@ public class EnemyAttacks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AntiCampingAttack();
-        BeamAttack();
+        //AntiCampingAttack();
+        //BeamAttack();
+        WaveAttack();
     }
 
     void AntiCampingAttack()
@@ -69,4 +73,13 @@ public class EnemyAttacks : MonoBehaviour
             }
         }
     }
+
+    void WaveAttack()
+    {
+        if (!waveSpawned)
+        {
+            waveSpawned = true;
+            Instantiate(waveProjectile, transform.position, transform.rotation);
+        }
+    } 
 }
