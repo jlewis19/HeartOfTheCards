@@ -10,6 +10,7 @@ TagManager:
   - Waypoint
   - AntiCampingProjectile
   - Beam
+  - Cover
   layers:
   - Default
   - TransparentFX

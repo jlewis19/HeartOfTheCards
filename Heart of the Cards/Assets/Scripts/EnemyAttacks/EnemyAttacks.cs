@@ -8,11 +8,13 @@ public class EnemyAttacks : MonoBehaviour
     public static int AntiCampingProjectileDamage = 10;
     public static int BeamDamage = 2;
     public static int WaveDamage = 20;
+    public static int HomingDamage = 5;
 
     [Header("Projectile Prefabs")]
     public GameObject antiCampingProjectile;
     public GameObject beamProjectile;
     public GameObject waveProjectile;
+    public GameObject homingProjectile;
 
     [Header("Beam Attack Related")]
     public Transform centerOfRoom;
@@ -22,6 +24,7 @@ public class EnemyAttacks : MonoBehaviour
     bool antiCampingSpawned = false;
     bool beamSpawned = false;
     bool waveSpawned = false;
+    bool homingSpawned = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +36,9 @@ public class EnemyAttacks : MonoBehaviour
     void Update()
     {
         //AntiCampingAttack();
-        //BeamAttack();
-        WaveAttack();
+        BeamAttack();
+        //WaveAttack();
+        //HomingAttack();
     }
 
     void AntiCampingAttack()
@@ -82,4 +86,13 @@ public class EnemyAttacks : MonoBehaviour
             Instantiate(waveProjectile, transform.position, transform.rotation);
         }
     } 
+
+    void HomingAttack()
+    {
+        if (!homingSpawned)
+        {
+            homingSpawned = true;
+            Instantiate(homingProjectile, transform.position, transform.rotation);
+        }
+    }
 }
