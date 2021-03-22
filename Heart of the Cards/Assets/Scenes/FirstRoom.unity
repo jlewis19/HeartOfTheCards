@@ -244,6 +244,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasinoTable_Ellipse_00 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 398562339808292272, guid: 37aa84da846f5e249a00f8624102e099,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
+      objectReference: {fileID: 0}
     - target: {fileID: 1406105158169009732, guid: 37aa84da846f5e249a00f8624102e099,
         type: 3}
       propertyPath: m_Enabled
@@ -332,6 +337,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CasinoTable_Ellipse_00 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 398562339808292272, guid: 37aa84da846f5e249a00f8624102e099,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
       objectReference: {fileID: 0}
     - target: {fileID: 1406105158169009732, guid: 37aa84da846f5e249a00f8624102e099,
         type: 3}
@@ -1647,6 +1657,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasinoTable_Ellipse_00 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 398562339808292272, guid: 37aa84da846f5e249a00f8624102e099,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
+      objectReference: {fileID: 0}
     - target: {fileID: 1406105158169009732, guid: 37aa84da846f5e249a00f8624102e099,
         type: 3}
       propertyPath: m_Enabled
@@ -2316,6 +2331,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   antiCampingProjectile: {fileID: 6846473951729143905, guid: ce746b6a857bf4e4a8b9825168b2c687,
     type: 3}
+  beamProjectile: {fileID: 2263594555978163171, guid: 1156e7e6c4ce30b4d9bac8585087f5be,
+    type: 3}
+  waveProjectile: {fileID: 2179786877670841809, guid: 8edf71d6f4361354aba194ffeb4d3f8f,
+    type: 3}
+  homingProjectile: {fileID: 2191599778013874384, guid: 1519743f73d97494d9407226214ddffa,
+    type: 3}
+  centerOfRoom: {fileID: 503923741}
 --- !u!114 &503923744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2868,6 +2890,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   antiCampingProjectile: {fileID: 6846473951729143905, guid: ce746b6a857bf4e4a8b9825168b2c687,
     type: 3}
+  beamProjectile: {fileID: 0}
+  waveProjectile: {fileID: 0}
+  homingProjectile: {fileID: 0}
+  centerOfRoom: {fileID: 0}
 --- !u!4 &590245595 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8700636336802628728, guid: 37ee19ae1c2ff004589f9e4928174dcb,
@@ -11285,6 +11311,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasinoTable_Ellipse_00 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 398562339808292272, guid: 37aa84da846f5e249a00f8624102e099,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
+      objectReference: {fileID: 0}
     - target: {fileID: 1406105158169009732, guid: 37aa84da846f5e249a00f8624102e099,
         type: 3}
       propertyPath: m_Enabled
@@ -11466,6 +11497,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CasinoTable_Ellipse_00 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 398562339808292272, guid: 37aa84da846f5e249a00f8624102e099,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
       objectReference: {fileID: 0}
     - target: {fileID: 1406105158169009732, guid: 37aa84da846f5e249a00f8624102e099,
         type: 3}
@@ -18349,6 +18385,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasinoTable_Ellipse_00 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 398562339808292272, guid: 37aa84da846f5e249a00f8624102e099,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
+      objectReference: {fileID: 0}
     - target: {fileID: 1406105158169009732, guid: 37aa84da846f5e249a00f8624102e099,
         type: 3}
       propertyPath: m_Enabled
@@ -20101,6 +20142,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CasinoTable_Ellipse_00
       objectReference: {fileID: 0}
+    - target: {fileID: 398562339808292272, guid: 37aa84da846f5e249a00f8624102e099,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
+      objectReference: {fileID: 0}
     - target: {fileID: 1406105158169009732, guid: 37aa84da846f5e249a00f8624102e099,
         type: 3}
       propertyPath: m_Enabled
@@ -20654,6 +20700,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: theboss
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f04d408377b5b5247b524cee2dbd08af,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: f04d408377b5b5247b524cee2dbd08af,
         type: 3}
@@ -21342,6 +21393,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CasinoTable_Ellipse_00 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 398562339808292272, guid: 37aa84da846f5e249a00f8624102e099,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
       objectReference: {fileID: 0}
     - target: {fileID: 1406105158169009732, guid: 37aa84da846f5e249a00f8624102e099,
         type: 3}
@@ -22321,6 +22377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8599f86f29f00489b79212f74dc7a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverText: {fileID: 0}
 --- !u!4 &2047277987
 Transform:
   m_ObjectHideFlags: 0
