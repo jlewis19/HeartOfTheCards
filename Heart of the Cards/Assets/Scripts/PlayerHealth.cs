@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour {
     public Slider healthSlider;
 
     int currentHealth;
+    bool isDead = false;
 
     // Start is called before the first frame update
     void Start() {
@@ -24,8 +25,10 @@ public class PlayerHealth : MonoBehaviour {
         if (currentHealth > 0) {
             currentHealth -= damageAmount;
             healthSlider.value = currentHealth;
+            
         }
-        if (currentHealth <= 0) {
+        if (currentHealth <= 0 && !isDead) {
+            isDead = true; 
             PlayerDies();
         }
 
@@ -35,5 +38,6 @@ public class PlayerHealth : MonoBehaviour {
     void PlayerDies() {
         Debug.Log("Player is dead");
         transform.Rotate(-90, 0, 0, Space.Self);
+        FindObjectOfType<LevelManager>().PlayerDies();
     }
 }
