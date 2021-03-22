@@ -232,7 +232,8 @@ public class CardController : MonoBehaviour
             damage = 150;
         } else {
             damage = 200;
-        }
+        } 
+
         var projectile = gameObject.GetComponentInChildren<FireProjectile>();
         projectile.damage = damage;
     }

@@ -32,6 +32,16 @@ public class EnemyHealth : MonoBehaviour
         Debug.Log("Current enemy health: " + currentHealth);
     }
 
+    public void HealUp(int amount) 
+    {
+        if (currentHealth / startingHealth > .5f) 
+        {
+            currentHealth += amount;
+            SetHealthBar();
+            Debug.Log("Enemy recovered and now has " + currentHealth);
+        }
+    }
+
     private void SetHealthBar()
     {
         healthBar.value = currentHealth;

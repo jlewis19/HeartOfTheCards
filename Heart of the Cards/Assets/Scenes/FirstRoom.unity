@@ -719,7 +719,7 @@ Transform:
   - {fileID: 1346844991}
   - {fileID: 962046144}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &204428111
 PrefabInstance:
@@ -2043,7 +2043,7 @@ Transform:
   - {fileID: 1023991312}
   - {fileID: 501915316}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &471763618
 GameObject:
@@ -2337,7 +2337,14 @@ MonoBehaviour:
     type: 3}
   homingProjectile: {fileID: 2191599778013874384, guid: 1519743f73d97494d9407226214ddffa,
     type: 3}
+  minePrefab: {fileID: 4267039830942177868, guid: 45eacb38072bb664499b70a13bfb9647,
+    type: 3}
   centerOfRoom: {fileID: 503923741}
+  numberOfMines: 2
+  xMin: {fileID: 213846633}
+  xMax: {fileID: 420441284}
+  zMin: {fileID: 1617102613}
+  zMax: {fileID: 1165148139}
 --- !u!114 &503923744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2893,7 +2900,13 @@ MonoBehaviour:
   beamProjectile: {fileID: 0}
   waveProjectile: {fileID: 0}
   homingProjectile: {fileID: 0}
+  minePrefab: {fileID: 0}
   centerOfRoom: {fileID: 0}
+  numberOfMines: 2
+  xMin: {fileID: 0}
+  xMax: {fileID: 0}
+  zMin: {fileID: 0}
+  zMax: {fileID: 0}
 --- !u!4 &590245595 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8700636336802628728, guid: 37ee19ae1c2ff004589f9e4928174dcb,
@@ -3598,7 +3611,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14622
+  m_Name: pb_Mesh30332
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3761,7 +3774,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14310
+  m_Name: pb_Mesh29962
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11765,7 +11778,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-10474
+  m_Name: pb_Mesh30086
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18733,7 +18746,7 @@ Transform:
   - {fileID: 338246083}
   - {fileID: 286052732}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1229975108
 GameObject:
@@ -21137,7 +21150,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14516
+  m_Name: pb_Mesh30206
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

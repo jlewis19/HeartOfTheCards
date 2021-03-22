@@ -9,36 +9,51 @@ public class EnemyAttacks : MonoBehaviour
     public static int BeamDamage = 2;
     public static int WaveDamage = 20;
     public static int HomingDamage = 5;
+    public static int MineDamage = 30;
+    public static int healAmount = 30;
+    public static float buffAmount = 1.5f;
 
     [Header("Projectile Prefabs")]
     public GameObject antiCampingProjectile;
     public GameObject beamProjectile;
     public GameObject waveProjectile;
     public GameObject homingProjectile;
+    public GameObject minePrefab;
 
     [Header("Beam Attack Related")]
     public Transform centerOfRoom;
     public static float beamSpeed = 2f;
     public static float beamTick = .3f;
 
+    [Header("Mine Related Fields")]
+    public float numberOfMines = 2;
+    public Transform xMin;
+    public Transform xMax;
+    public Transform zMin;
+    public Transform zMax;
+
     bool antiCampingSpawned = false;
     bool beamSpawned = false;
     bool waveSpawned = false;
     bool homingSpawned = false;
+    bool mineSpawned = false;
+    bool buffed = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         //AntiCampingAttack();
-        BeamAttack();
+        //BeamAttack();
         //WaveAttack();
         //HomingAttack();
+        MineAttack();
+        //BuffAndHeal();
     }
 
     void AntiCampingAttack()
@@ -66,7 +81,7 @@ public class EnemyAttacks : MonoBehaviour
             if (!beamSpawned)
             {
                 beamSpawned = true;
-                Instantiate(beamProjectile, transform.position + Vector3.down, 
+                Instantiate(beamProjectile, transform.position + Vector3.down,
                     Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 90, transform.rotation.eulerAngles.z + 90));
                 Instantiate(beamProjectile, transform.position + Vector3.down,
     Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 45, transform.rotation.eulerAngles.z + 90));
@@ -85,7 +100,7 @@ public class EnemyAttacks : MonoBehaviour
             waveSpawned = true;
             Instantiate(waveProjectile, transform.position, transform.rotation);
         }
-    } 
+    }
 
     void HomingAttack()
     {
@@ -93,6 +108,48 @@ public class EnemyAttacks : MonoBehaviour
         {
             homingSpawned = true;
             Instantiate(homingProjectile, transform.position, transform.rotation);
+        }
+    }
+
+    void MineAttack() 
+    {
+        if (!mineSpawned)
+        {
+            mineSpawned = true;
+            float xMin = this.xMin.position.x;
+            float xMax = this.xMax.position.x;
+            float zMin = this.zMin.position.z;
+            float zMax = this.zMax.position.z;
+            Vector3 minePos;
+
+            for (int i = 0; i < numberOfMines; i++)
+            {
+                minePos = new Vector3(Random.Range(xMin, xMax), 0, Random.Range(zMin, zMax));
+                Instantiate(minePrefab, minePos, transform.rotation);
+            }
+        }
+
+        else 
+        {
+            if (GameObject.FindGameObjectWithTag("Mine") == null) 
+            {
+                mineSpawned = false;
+            }
+        }
+    }
+
+    void BuffAndHeal() 
+    {
+        if (!buffed) 
+        {
+            var EnemyHealth = GetComponent<EnemyHealth>();
+            buffed = true;
+            BeamDamage = (int)(BeamDamage * buffAmount);
+            HomingDamage = (int)(HomingDamage * buffAmount);
+            MineDamage = (int)(MineDamage * buffAmount);
+            WaveDamage = (int)(WaveDamage * buffAmount);
+
+            EnemyHealth.HealUp(healAmount);
         }
     }
 }
