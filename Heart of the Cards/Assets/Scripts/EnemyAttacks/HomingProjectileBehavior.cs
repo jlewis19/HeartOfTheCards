@@ -18,10 +18,12 @@ public class HomingProjectileBehavior : MonoBehaviour
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Cover"))
         {
+            print("destroy homing");
             Destroy(gameObject);
         }
         else if (other.CompareTag("Player"))

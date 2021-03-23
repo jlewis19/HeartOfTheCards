@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class EnemyAttacks : MonoBehaviour
 {
+    public float attackCooldown = 5;
+    public float animationCooldown = 2;
+    float attackTime = 0;
+    Animator anim;
+
     [Header("Boss Attack Damage Values")]
     public static int AntiCampingProjectileDamage = 10;
     public static int BeamDamage = 2;
     public static int WaveDamage = 20;
-    public static int HomingDamage = 5;
+    public static int HomingDamage = 10;
     public static int MineDamage = 30;
     public static int healAmount = 30;
     public static float buffAmount = 1.5f;
@@ -39,21 +44,56 @@ public class EnemyAttacks : MonoBehaviour
     bool mineSpawned = false;
     bool buffed = false;
 
+    GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        anim = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        //AntiCampingAttack();
-        //BeamAttack();
-        //WaveAttack();
-        //HomingAttack();
-        MineAttack();
-        //BuffAndHeal();
+        Vector3 target = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+        transform.LookAt(target);
+
+        attackTime += Time.deltaTime;
+        if (attackTime >= animationCooldown) {
+            anim.SetInteger("animState", 0);
+        }
+
+        if (attackTime >= attackCooldown) {
+            attackTime = 0;
+            anim.SetInteger("animState", 2);
+
+            int attack = Random.Range(1, 6);
+            switch (attack) {
+                case 0:
+                    AntiCampingAttack();
+                    break;
+                case 1:
+                    print("beam");
+                    BeamAttack();
+                    break;
+                case 2:
+                    print("wave");
+                    WaveAttack();
+                    break;
+                case 3:
+                    print("homing");
+                    HomingAttack();
+                    break;
+                case 4:
+                    print("mine");
+                    MineAttack();
+                    break;
+                case 5:
+                    BuffAndHeal();
+                    break;
+            }
+        }
     }
 
     void AntiCampingAttack()
@@ -70,7 +110,18 @@ public class EnemyAttacks : MonoBehaviour
 
     void BeamAttack()
     {
+        beamSpawned = true;
+        Instantiate(beamProjectile, transform.position + Vector3.down,
+            Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 90, transform.rotation.eulerAngles.z + 90));
+        Instantiate(beamProjectile, transform.position + Vector3.down,
+Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 45, transform.rotation.eulerAngles.z + 90));
+        Instantiate(beamProjectile, transform.position + Vector3.down,
+Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 135, transform.rotation.eulerAngles.z + 90));
+        Instantiate(beamProjectile, transform.position + Vector3.down,
+            Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 90));
+        /*
         float step = 5 * Time.deltaTime;
+
         if (Vector3.Distance(transform.position, centerOfRoom.position) > 0.01)
         {
             transform.position = Vector3.MoveTowards(transform.position, centerOfRoom.position, step);
@@ -90,7 +141,7 @@ public class EnemyAttacks : MonoBehaviour
                 Instantiate(beamProjectile, transform.position + Vector3.down,
                     Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 90));
             }
-        }
+        }*/
     }
 
     void WaveAttack()
@@ -98,7 +149,7 @@ public class EnemyAttacks : MonoBehaviour
         if (!waveSpawned)
         {
             waveSpawned = true;
-            Instantiate(waveProjectile, transform.position, transform.rotation);
+            Instantiate(waveProjectile, centerOfRoom.position, centerOfRoom.rotation);
         }
     }
 

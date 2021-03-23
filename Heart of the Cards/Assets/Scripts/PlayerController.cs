@@ -12,13 +12,17 @@ public class PlayerController : MonoBehaviour {
     bool canDash = true;
     float dashCooldownTimer = 0f;
 
+    float y;
+
     // Start is called before the first frame update
     void Start() {
         controller = GetComponent<CharacterController>();
+        y = transform.position.y;
     }
 
     // Update is called once per frame
     void Update() {
+        transform.position.Set(transform.position.x, y, transform.position.z);
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 

@@ -12,6 +12,7 @@ TagManager:
   - Beam
   - Cover
   - Mine
+  - LevelManager
   layers:
   - Default
   - TransparentFX
