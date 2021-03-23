@@ -166,7 +166,11 @@ public class CardController : MonoBehaviour
     //Prints the current hand
     private void printHand(Card[] hand)
     {
-        int x = 290;
+        GameObject storageBlock = GameObject.FindGameObjectWithTag("HandTextBG");
+
+        float x = storageBlock.transform.position.x;
+        float y = storageBlock.transform.position.y;
+
         int z = 0;
         foreach(Card c in hand)
         {
@@ -182,14 +186,17 @@ public class CardController : MonoBehaviour
             canvas.sortingOrder = z;
 
             RectTransform tf = card.GetComponent<RectTransform>();
-            tf.SetPositionAndRotation(new Vector3(300 + x, 50), tf.rotation);
+            tf.SetPositionAndRotation(new Vector3(x - 210, y - 115), tf.rotation);
             x += distanceToNextCard;
             z++;
         }
     }
 
     private void printStorage(Card[] storage) {
-        int x = 500;
+        GameObject storageBlock = GameObject.FindGameObjectWithTag("StoredCardsBG");
+
+        float x = storageBlock.transform.position.x;
+        float y = storageBlock.transform.position.y;
         int z = 1;
 
         foreach (Card c in storage) {
@@ -204,7 +211,7 @@ public class CardController : MonoBehaviour
             canvas.sortingOrder = z;
 
             RectTransform tf = card.GetComponent<RectTransform>();
-            tf.SetPositionAndRotation(new Vector3(300 + x, 370), tf.rotation);
+            tf.SetPositionAndRotation(new Vector3(x - 65, y - 10), tf.rotation);
             x += distanceToNextCard;
             z++;
         }
@@ -235,9 +242,9 @@ public class CardController : MonoBehaviour
             GameObject card = GameObject.Find(hand[index].printCard());
             RectTransform tf = card.GetComponent<RectTransform>();
             if (hand[index].discardQueue) {
-                tf.SetPositionAndRotation(new Vector3(tf.position.x, 70), tf.rotation);
+                tf.SetPositionAndRotation(new Vector3(tf.position.x, tf.position.y + 20), tf.rotation);
             } else {
-                tf.SetPositionAndRotation(new Vector3(tf.position.x, 50), tf.rotation);
+                tf.SetPositionAndRotation(new Vector3(tf.position.x, tf.position.y - 20), tf.rotation);
             }
         }
         

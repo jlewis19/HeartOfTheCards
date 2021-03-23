@@ -13,6 +13,8 @@ TagManager:
   - Cover
   - Mine
   - LevelManager
+  - StoredCardsBG
+  - HandTextBG
   layers:
   - Default
   - TransparentFX

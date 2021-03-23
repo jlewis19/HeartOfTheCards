@@ -3471,7 +3471,7 @@ GameObject:
   - component: {fileID: 607374711}
   m_Layer: 5
   m_Name: Current Hand BG
-  m_TagString: Untagged
+  m_TagString: HandTextBG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3492,10 +3492,10 @@ RectTransform:
   m_Father: {fileID: 2008005849}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 380.5, y: -67}
-  m_SizeDelta: {x: 178.46771, y: 28.848118}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -125, y: 152}
+  m_SizeDelta: {x: 178.46771, y: 28.848114}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &607374711
 MonoBehaviour:
@@ -3614,7 +3614,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30334
+  m_Name: pb_Mesh167204
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3777,7 +3777,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29964
+  m_Name: pb_Mesh166658
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11889,7 +11889,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30088
+  m_Name: pb_Mesh166856
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21118,7 +21118,7 @@ GameObject:
   - component: {fileID: 1724105265}
   m_Layer: 5
   m_Name: Stored Cards BG
-  m_TagString: Untagged
+  m_TagString: StoredCardsBG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21138,10 +21138,10 @@ RectTransform:
   m_Father: {fileID: 2008005849}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 380.5, y: 154.2}
-  m_SizeDelta: {x: 178.46771, y: 107.86983}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -128, y: -81}
+  m_SizeDelta: {x: 178.46771, y: 107.86981}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1724105265
 MonoBehaviour:
@@ -21494,7 +21494,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh30208
+  m_Name: pb_Mesh167010
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
