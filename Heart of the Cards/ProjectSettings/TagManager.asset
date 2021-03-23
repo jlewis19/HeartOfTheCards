@@ -12,6 +12,9 @@ TagManager:
   - Beam
   - Cover
   - Mine
+  - LevelManager
+  - StoredCardsBG
+  - HandTextBG
   layers:
   - Default
   - TransparentFX

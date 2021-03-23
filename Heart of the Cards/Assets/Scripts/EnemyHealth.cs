@@ -7,12 +7,14 @@ public class EnemyHealth : MonoBehaviour
 {
     public int startingHealth = 100;
     public Slider healthBar;
+    Animator anim;
 
     int currentHealth;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         currentHealth = startingHealth;
         healthBar.maxValue = startingHealth;
         SetHealthBar();
@@ -22,7 +24,9 @@ public class EnemyHealth : MonoBehaviour
     void Update()
     {
         if (currentHealth <= 0) {
-            Destroy(gameObject);
+            FindObjectOfType<LevelManager>().EnemyDies();
+            anim.SetInteger("animState", 1);
+            Destroy(gameObject, 3);
         }
     }
 
@@ -36,7 +40,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (currentHealth / startingHealth > .5f) 
         {
-            currentHealth += amount;
+            currentHealth = Mathf.Clamp(currentHealth + amount, 0, startingHealth);
             SetHealthBar();
             Debug.Log("Enemy recovered and now has " + currentHealth);
         }

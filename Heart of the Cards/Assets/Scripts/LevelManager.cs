@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -28,5 +29,14 @@ public class LevelManager : MonoBehaviour
     {
         gameOverText.enabled = true;
         Invoke("LoadCurrentLevel", 2);
+    }
+
+    public void EnemyDies() {
+        gameOverText.text = "You win!!!";
+        gameOverText.enabled = true;
+    }
+
+    void LoadCurrentLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
