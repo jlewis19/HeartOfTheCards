@@ -75,6 +75,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 91
@@ -198,7 +200,7 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 62a007ecc0635ae2e6e4a9661375f9b0
+      Hash: 3d7a30dcaf82ca7a61f15fc6a7bd40a3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyHealth
@@ -498,7 +500,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: e5579abe155ea39e23f93829bf273048
+      Hash: 1955725ba8da3be104c50271a2b19654
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LevelManager
@@ -624,7 +626,7 @@ ScriptsOnlyBuild:
     className: AntiCampingProjectileBehavior
   - hash:
       serializedVersion: 2
-      Hash: 82d14f6caf1ce2dcbdc91bd9b10bc594
+      Hash: 8942c4136d21ffbed96afd4c783a27e1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerHealth
@@ -727,5 +729,5 @@ ScriptsOnlyBuild:
   platform: 20
   scenePathNames:
   - Assets/Scenes/FirstRoom.unity
-  playerPath: C:/Users/jlewi/OneDrive/Documents/Northeastern/Spring 2021/Game Programming/HeartoftheCards/Heart
-    of the Cards/Builds
+  playerPath: C:/Users/jlewi/OneDrive/Documents/Northeastern/Spring 2021/Game Programming/Heart
+    of the Cards Builds

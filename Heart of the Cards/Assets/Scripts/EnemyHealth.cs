@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public int startingHealth = 100;
     public Slider healthBar;
     Animator anim;
+    public AudioClip hitSFX;
 
     int currentHealth;
 
@@ -31,6 +32,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     public void takeDamage(int amount) {
+        AudioSource.PlayClipAtPoint(hitSFX, transform.position);
         currentHealth -= amount;
         SetHealthBar();
         Debug.Log("Current enemy health: " + currentHealth);
