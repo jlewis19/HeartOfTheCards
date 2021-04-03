@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static int projectileDamage = 10;
+    public static float mouseSensitivity = 100;
     public static GameObject player;
     public static PlayerHealth playerHealth;
     public Text gameOverText;
