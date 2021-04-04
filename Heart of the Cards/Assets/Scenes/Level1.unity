@@ -2284,6 +2284,7 @@ MonoBehaviour:
   startingHealth: 200
   healthBar: {fileID: 1904444335}
   hitSFX: {fileID: 8300000, guid: 303811cec7bbe6449b16a44194fd3205, type: 3}
+  currentHealth: 0
 --- !u!1 &504632895
 GameObject:
   m_ObjectHideFlags: 0
@@ -15772,13 +15773,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: f04d408377b5b5247b524cee2dbd08af,
         type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'boss:Hips'\n\tTransform 'boss:RightForeArm'\n\tTransform
-        'boss:RightLeg'\n\tTransform 'boss:LeftHandMiddle1'\n\tTransform 'boss:LeftUpLeg'\n\tTransform
-        'boss:LeftHandMiddle2'\n\tTransform 'boss:Spine2'\n\tTransform 'boss:RightHandMiddle1'\n\tTransform
-        'boss:LeftHandThumb1'\n\tTransform 'boss:Neck'\n\tand more ...\n\tFrom animation
-        clip 'mixamo.com'"
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f04d408377b5b5247b524cee2dbd08af, type: 3}
