@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class MinionAI : MonoBehaviour
 {
     public enum FSMStates {
-        Idle, Patrol, Chase, Attack, Dead
+        Idle, Patrol, Chase, Attack
     }
 
     public FSMStates currentState;
@@ -28,7 +28,6 @@ public class MinionAI : MonoBehaviour
 
     bool isDead;
 
-    Animator anim;
     NavMeshAgent agent;
 
     public Transform enemyEyes;
@@ -41,10 +40,8 @@ public class MinionAI : MonoBehaviour
     }
 
     private void Initialize() {
-        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         wanderPoints = GameObject.FindGameObjectsWithTag("Waypoint");
         player = GameObject.FindGameObjectWithTag("Player");
-        anim = GetComponent<Animator>();
 
         currentState = FSMStates.Patrol;
         isDead = false;
@@ -55,14 +52,10 @@ public class MinionAI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
-        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+    void Update()
+    {
         if (agent == null) {
             agent = GetComponent<NavMeshAgent>();
-        }
-        if (isDead) {
-            agent.speed = 0;
-            return;
         }
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
@@ -76,14 +69,6 @@ public class MinionAI : MonoBehaviour
             case FSMStates.Attack:
                 UpdateAttackState();
                 break;
-            case FSMStates.Dead:
-                UpdateDeadState();
-                break;
-        }
-
-        EnemyHealth enemyHealth = GetComponent<EnemyHealth>();
-        if (enemyHealth.currentHealth <= 0) {
-            isDead = true;
         }
 
         elapsedTime += Time.deltaTime;
@@ -91,9 +76,8 @@ public class MinionAI : MonoBehaviour
 
     void UpdatePatrolState() {
         FaceTarget(nextDestination);
-        anim.SetInteger("animState", 3);
 
-        if (Vector3.Distance(transform.position, nextDestination) < 2) {
+        if (Vector3.Distance(transform.position, nextDestination) < 1) {
             FindNextPoint();
         } else if (distanceToPlayer <= chaseDistance && IsPlayerInClearFOV()) {
             currentState = FSMStates.Chase;
@@ -107,7 +91,6 @@ public class MinionAI : MonoBehaviour
     void UpdateChaseState() {
         nextDestination = player.transform.position;
         FaceTarget(nextDestination);
-        anim.SetInteger("animState", 3);
 
         if (distanceToPlayer <= attackDistance) {
             currentState = FSMStates.Attack;
@@ -124,7 +107,6 @@ public class MinionAI : MonoBehaviour
     void UpdateAttackState() {
         nextDestination = player.transform.position;
         FaceTarget(nextDestination);
-        anim.SetInteger("animState", 2);
 
         if (distanceToPlayer <= attackDistance) {
             currentState = FSMStates.Attack;
@@ -135,12 +117,6 @@ public class MinionAI : MonoBehaviour
         }
 
         EnemySpellCast();
-    }
-    void UpdateDeadState() {
-        anim.SetInteger("animState", 1);
-        isDead = true;
-
-        Destroy(gameObject, 3);
     }
 
     void FindNextPoint() {
