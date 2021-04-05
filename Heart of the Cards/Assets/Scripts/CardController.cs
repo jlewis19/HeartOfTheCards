@@ -26,7 +26,8 @@ public class CardController : MonoBehaviour
     //int handValue;
     float timeElapsed = 0;
     Hand currentHand;
-    Suite flushSuite = Suite.None;
+    Suite flushSuite;// = Suite.None;
+    bool hasFlush = false;
     bool hasDamageBuff = false;
 
     // Start is called before the first frame update
@@ -435,6 +436,7 @@ public class CardController : MonoBehaviour
         } else if (pairs == 1 && three) {
             return Hand.FullHouse;
         } else if (flush) {
+            hasFlush = true;
             return Hand.Flush;
         } else if (straight) {
             return Hand.Straight;
@@ -484,33 +486,38 @@ public class CardController : MonoBehaviour
 
     void HandleFlush()
     {
-        switch (flushSuite)
+        if (hasFlush)
         {
-            case Suite.None:
-                return; //Does nothing <3
-            case Suite.Heart:
-                player.GetComponent<PlayerHealth>().TakeDamage(healAmount);
-                flushSuite = Suite.None;
-                break;
-            case Suite.Diamond:
-                player.GetComponent<PlayerHealth>().hasArmor = true;
-                flushSuite = Suite.None;
-                break;
-            case Suite.Club:
-                enemy.GetComponent<EnemyAttacks>().Stun();
-                flushSuite = Suite.None;
-                break;
-            case Suite.Spade:
-                hasDamageBuff = true;
-                flushSuite = Suite.None;
-                break;
+            switch (flushSuite)
+            {
+                // case Suite.None:
+                //return; //Does nothing <3
+                case Suite.Heart:
+                    player.GetComponent<PlayerHealth>().TakeDamage(healAmount);
+                    //flushSuite = Suite.None;
+                    break;
+                case Suite.Diamond:
+                    player.GetComponent<PlayerHealth>().hasArmor = true;
+                    // flushSuite = Suite.None;
+                    break;
+                case Suite.Club:
+                    enemy.GetComponent<EnemyAttacks>().Stun();
+                    // flushSuite = Suite.None;
+                    break;
+                case Suite.Spade:
+                    hasDamageBuff = true;
+                    // flushSuite = Suite.None;
+                    break;
+            }
+            hasFlush = false;
         }
+
     }
 }
 
 //Enum representing the suite of a card
 public enum Suite {
-    Diamond, Heart, Spade, Club, None
+    Diamond, Heart, Spade, Club
 }
 
 //Enum representing types of hands
