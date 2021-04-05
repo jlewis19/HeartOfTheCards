@@ -28,6 +28,7 @@ public class MinionAI : MonoBehaviour
 
     bool isDead;
 
+    Animator anim;
     NavMeshAgent agent;
 
     public Transform enemyEyes;
@@ -46,6 +47,7 @@ public class MinionAI : MonoBehaviour
         currentState = FSMStates.Patrol;
         isDead = false;
 
+        anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
         FindNextPoint();
@@ -54,6 +56,10 @@ public class MinionAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        if (isDead) {
+            return;
+        }
         if (agent == null) {
             agent = GetComponent<NavMeshAgent>();
         }
@@ -71,13 +77,18 @@ public class MinionAI : MonoBehaviour
                 break;
         }
 
+        EnemyHealth enemyHealth = GetComponent<EnemyHealth>();
+        if (enemyHealth.currentHealth <= 0) {
+            isDead = true;
+        }
         elapsedTime += Time.deltaTime;
     }
 
     void UpdatePatrolState() {
+        anim.SetInteger("animState", 3);
         FaceTarget(nextDestination);
 
-        if (Vector3.Distance(transform.position, nextDestination) < 1) {
+        if (Vector3.Distance(transform.position, nextDestination) < 2) {
             FindNextPoint();
         } else if (distanceToPlayer <= chaseDistance && IsPlayerInClearFOV()) {
             currentState = FSMStates.Chase;
@@ -89,6 +100,7 @@ public class MinionAI : MonoBehaviour
     }
 
     void UpdateChaseState() {
+        anim.SetInteger("animState", 3);
         nextDestination = player.transform.position;
         FaceTarget(nextDestination);
 
@@ -105,6 +117,7 @@ public class MinionAI : MonoBehaviour
     }
 
     void UpdateAttackState() {
+        anim.SetInteger("animState", 2);
         nextDestination = player.transform.position;
         FaceTarget(nextDestination);
 
