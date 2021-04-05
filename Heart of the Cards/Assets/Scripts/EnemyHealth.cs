@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour
     Animator anim;
     public AudioClip hitSFX;
 
-    public int currentHealth;
+    int currentHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +26,8 @@ public class EnemyHealth : MonoBehaviour
     {
         if (currentHealth <= 0) {
             FindObjectOfType<LevelManager>().EnemyDies();
-            if (anim != null) {
-                anim.SetInteger("animState", 1);
-                Destroy(gameObject, 3);
-            } else {
-                Destroy(gameObject);
-            }
+            anim.SetInteger("animState", 1);
+            Destroy(gameObject, 3);
         }
     }
 
