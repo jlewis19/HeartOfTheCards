@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MinionAI : MonoBehaviour
-{
+public class MinionAI : MonoBehaviour {
     public enum FSMStates {
         Idle, Patrol, Chase, Attack
     }
@@ -35,8 +34,7 @@ public class MinionAI : MonoBehaviour
     public float fieldOfView = 45f;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         Initialize();
     }
 
@@ -54,8 +52,7 @@ public class MinionAI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         if (isDead) {
             return;
@@ -65,7 +62,7 @@ public class MinionAI : MonoBehaviour
         }
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-        switch(currentState) {
+        switch (currentState) {
             case FSMStates.Patrol:
                 UpdatePatrolState();
                 break;
