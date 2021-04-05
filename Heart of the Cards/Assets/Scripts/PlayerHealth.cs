@@ -7,6 +7,8 @@ public class PlayerHealth : MonoBehaviour {
     public int startingHealth = 100;
     public Slider healthSlider;
     public AudioClip hitSFX;
+    public int reductionAmount = 2;
+    public bool hasArmor = false; 
 
     int currentHealth;
     bool isDead = false;
@@ -25,10 +27,16 @@ public class PlayerHealth : MonoBehaviour {
     public void TakeDamage(int damageAmount) {
         AudioSource.PlayClipAtPoint(hitSFX, transform.position);
 
+        if (hasArmor)
+        {
+            damageAmount /= reductionAmount;
+            hasArmor = false;
+        }
+
         if (currentHealth > 0) {
             currentHealth -= damageAmount;
             healthSlider.value = currentHealth;
-            
+            Mathf.Clamp(currentHealth, 0, 100);
         }
         if (currentHealth <= 0 && !isDead) {
             isDead = true; 

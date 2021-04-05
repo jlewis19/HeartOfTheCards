@@ -37,6 +37,11 @@ public class EnemyAttacks : MonoBehaviour
     public Transform zMin;
     public Transform zMax;
 
+    [Header("Stun stuff :)")]
+    public float stunDuration = 3.0f;
+    bool stunned = false;
+    float timer = 0; 
+
     bool antiCampingSpawned = false;
     bool beamSpawned = false;
     bool waveSpawned = false;
@@ -58,6 +63,21 @@ public class EnemyAttacks : MonoBehaviour
     {
         Vector3 target = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         transform.LookAt(target);
+
+        if (stunned)
+        {
+            timer += Time.deltaTime;
+            if (timer >= stunDuration)
+            {
+                stunned = false;
+                timer = 0;
+            }
+            else
+            {
+                Debug.Log("Stunned");
+                return;
+            }
+        }
 
         attackTime += Time.deltaTime;
         if (attackTime >= animationCooldown) {
@@ -111,13 +131,13 @@ public class EnemyAttacks : MonoBehaviour
     void BeamAttack()
     {
         beamSpawned = true;
-        Instantiate(beamProjectile, transform.position + Vector3.down,
+        Instantiate(beamProjectile, transform.position + Vector3.up,
             Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 90, transform.rotation.eulerAngles.z + 90));
-        Instantiate(beamProjectile, transform.position + Vector3.down,
+        Instantiate(beamProjectile, transform.position + Vector3.up,
 Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 45, transform.rotation.eulerAngles.z + 90));
-        Instantiate(beamProjectile, transform.position + Vector3.down,
+        Instantiate(beamProjectile, transform.position + Vector3.up,
 Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 135, transform.rotation.eulerAngles.z + 90));
-        Instantiate(beamProjectile, transform.position + Vector3.down,
+        Instantiate(beamProjectile, transform.position + Vector3.up,
             Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 90));
         /*
         float step = 5 * Time.deltaTime;
@@ -158,11 +178,11 @@ Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngle
         if (!homingSpawned)
         {
             homingSpawned = true;
-            Instantiate(homingProjectile, transform.position, transform.rotation);
+            Instantiate(homingProjectile, transform.position + Vector3.up, transform.rotation);
         }
     }
 
-    void MineAttack() 
+    void MineAttack()
     {
         if (!mineSpawned)
         {
@@ -180,18 +200,18 @@ Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngle
             }
         }
 
-        else 
+        else
         {
-            if (GameObject.FindGameObjectWithTag("Mine") == null) 
+            if (GameObject.FindGameObjectWithTag("Mine") == null)
             {
                 mineSpawned = false;
             }
         }
     }
 
-    void BuffAndHeal() 
+    void BuffAndHeal()
     {
-        if (!buffed) 
+        if (!buffed)
         {
             var EnemyHealth = GetComponent<EnemyHealth>();
             buffed = true;
@@ -202,5 +222,10 @@ Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngle
 
             EnemyHealth.HealUp(healAmount);
         }
+    }
+
+    public void Stun()
+    {
+        stunned = true;
     }
 }
