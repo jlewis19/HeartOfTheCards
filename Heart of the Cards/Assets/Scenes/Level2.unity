@@ -2075,6 +2075,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 5
   animationCooldown: 2
+  attackSFX: {fileID: 8300000, guid: a09333038dd443a4fb4b49ce0dd5cd0d, type: 3}
   rotatingProjPrefab: {fileID: 2265679146372569598, guid: c334ab29b94f093499a7797687ed7ed9,
     type: 3}
   meleePrefab: {fileID: 0}
@@ -6242,6 +6243,7 @@ MonoBehaviour:
   projectileSpeed: 100
   reticleImage: {fileID: 0}
   damage: 10
+  throwSFX: {fileID: 8300000, guid: 375dd06eab98adc4bb1731dedf6cdc52, type: 3}
 --- !u!82 &963194231
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11865,6 +11867,7 @@ MonoBehaviour:
   moveSpeed: 10
   dashSpeed: 200
   dashCooldown: 3
+  dashSFX: {fileID: 8300000, guid: 1ff139085f007a5479e3b6dd27643e97, type: 3}
 --- !u!143 &2143901829
 CharacterController:
   m_ObjectHideFlags: 0

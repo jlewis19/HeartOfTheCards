@@ -6,6 +6,7 @@ public class EnemyAttacks : MonoBehaviour
 {
     public float attackCooldown = 5;
     public float animationCooldown = 2;
+    public AudioClip attackSFX;
     float attackTime = 0;
     Animator anim;
 
@@ -67,7 +68,7 @@ public class EnemyAttacks : MonoBehaviour
         if (attackTime >= attackCooldown) {
             attackTime = 0;
             anim.SetInteger("animState", 2);
-
+            AudioSource.PlayClipAtPoint(attackSFX, Camera.main.transform.position);
             int attack = Random.Range(1, 6);
             switch (attack) {
                 case 0:

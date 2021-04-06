@@ -2253,6 +2253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 5
   animationCooldown: 2
+  attackSFX: {fileID: 8300000, guid: 57d7fc7d60bd78a49b540b07dd79b878, type: 3}
   antiCampingProjectile: {fileID: 6846473951729143905, guid: ce746b6a857bf4e4a8b9825168b2c687,
     type: 3}
   beamProjectile: {fileID: 2263594555978163171, guid: 1156e7e6c4ce30b4d9bac8585087f5be,
@@ -6407,6 +6408,7 @@ MonoBehaviour:
   projectileSpeed: 100
   reticleImage: {fileID: 0}
   damage: 10
+  throwSFX: {fileID: 8300000, guid: 375dd06eab98adc4bb1731dedf6cdc52, type: 3}
 --- !u!82 &963194231
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11872,6 +11874,7 @@ MonoBehaviour:
   moveSpeed: 10
   dashSpeed: 200
   dashCooldown: 3
+  dashSFX: {fileID: 8300000, guid: 1ff139085f007a5479e3b6dd27643e97, type: 3}
 --- !u!143 &2143901829
 CharacterController:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
     public float moveSpeed = 10f;
     public float dashSpeed = 200f;
     public float dashCooldown = 3f;
+    public AudioClip dashSFX;
 
     CharacterController controller;
     Vector3 input, moveDirection;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour {
         {
             input *= dashSpeed;
             canDash = false;
+            AudioSource.PlayClipAtPoint(dashSFX, Camera.main.transform.position);
         }
         else
         {

@@ -7,6 +7,7 @@ public class WarAttacks : MonoBehaviour
 {
     public float attackCooldown = 5;
     public float animationCooldown = 2;
+    public AudioClip attackSFX;
     float attackTime = 0;
 
     [Header("Boss Attack Damage Values")]
@@ -84,10 +85,12 @@ public class WarAttacks : MonoBehaviour
                 case 1:
                     print("Melee");
                     MeleeAttack();
+                    AudioSource.PlayClipAtPoint(attackSFX, Camera.main.transform.position);
                     break;
                 case 2:
                     print("Leap");
                     WaveAttack();
+                    AudioSource.PlayClipAtPoint(attackSFX, Camera.main.transform.position);
                     break;
                 case 3:
                     print("Minion");
