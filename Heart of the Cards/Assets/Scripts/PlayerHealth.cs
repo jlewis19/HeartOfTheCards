@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour {
     public void TakeDamage(int damageAmount) {
         AudioSource.PlayClipAtPoint(hitSFX, transform.position);
 
-        if (currentHealth > 0) {
+        if (currentHealth > 0 && !PlayerController.dashing) {
             currentHealth -= damageAmount;
             healthSlider.value = currentHealth;
             

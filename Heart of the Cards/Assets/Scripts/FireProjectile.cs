@@ -19,7 +19,16 @@ public class FireProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && gameObject.GetComponentInParent<CardController>().hasHand) {
+        if (MouseSensitivityManager.active)
+        {
+            reticleImage.enabled = false;
+        }
+        else
+        {
+            reticleImage.enabled = true;
+        }
+
+        if (Input.GetButtonDown("Fire1") && gameObject.GetComponentInParent<CardController>().hasHand && !MouseSensitivityManager.active) {
             AudioSource.PlayClipAtPoint(throwSFX, transform.position);
             GameObject projectile = Instantiate(projectilePrefab, 
                 transform.position + transform.forward, transform.rotation) as GameObject;
