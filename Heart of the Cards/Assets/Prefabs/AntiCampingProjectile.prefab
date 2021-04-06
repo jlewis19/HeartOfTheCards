@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 505735078412865871}
   - component: {fileID: 3588540662756646598}
   - component: {fileID: 7735788805449606243}
+  - component: {fileID: -207609729536841382}
   m_Layer: 0
   m_Name: AntiCampingProjectile
   m_TagString: AntiCampingProjectile
@@ -117,3 +118,16 @@ MonoBehaviour:
   - {fileID: 5827571590346156526, guid: 519710ec6911d3142bf844bfb3387cd2, type: 3}
   projectileSpeed: 10
   currIndex: 0
+--- !u!114 &-207609729536841382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6846473951729143905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2b2450778fdc245a9e9ffc9358625d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 10

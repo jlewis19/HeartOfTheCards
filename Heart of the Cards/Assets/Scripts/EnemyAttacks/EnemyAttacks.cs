@@ -38,6 +38,11 @@ public class EnemyAttacks : MonoBehaviour
     public Transform zMin;
     public Transform zMax;
 
+    [Header("Stun stuff :)")]
+    public float stunDuration = 3.0f;
+    bool stunned = false;
+    float timer = 0;
+
     bool antiCampingSpawned = false;
     bool beamSpawned = false;
     bool waveSpawned = false;
@@ -60,6 +65,17 @@ public class EnemyAttacks : MonoBehaviour
         Vector3 target = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         transform.LookAt(target);
 
+        if (stunned) {
+            timer += Time.deltaTime;
+            if (timer >= stunDuration) {
+                stunned = false;
+                timer = 0;
+            } else {
+                Debug.Log("Stunned");
+                return;
+            }
+        }
+
         attackTime += Time.deltaTime;
         if (attackTime >= animationCooldown) {
             anim.SetInteger("animState", 0);
@@ -69,7 +85,8 @@ public class EnemyAttacks : MonoBehaviour
             attackTime = 0;
             anim.SetInteger("animState", 2);
             AudioSource.PlayClipAtPoint(attackSFX, Camera.main.transform.position);
-            int attack = Random.Range(1, 6);
+
+            int attack = Random.Range(0, 6);
             switch (attack) {
                 case 0:
                     AntiCampingAttack();
@@ -99,6 +116,11 @@ public class EnemyAttacks : MonoBehaviour
 
     void AntiCampingAttack()
     {
+        for (int ii = 0; ii < 4; ++ii) {
+            antiCampingProjectile.GetComponent<AntiCampingProjectileBehavior>().CreateProjectile(ii * 2);
+        }
+
+        /*
         if (!antiCampingSpawned)
         {
             antiCampingSpawned = true;
@@ -106,19 +128,19 @@ public class EnemyAttacks : MonoBehaviour
             {
                 antiCampingProjectile.GetComponent<AntiCampingProjectileBehavior>().CreateProjectile(ii * 2);
             }
-        }
+        }*/
     }
 
     void BeamAttack()
     {
         beamSpawned = true;
-        Instantiate(beamProjectile, transform.position + Vector3.down,
+        Instantiate(beamProjectile, transform.position + Vector3.up,
             Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 90, transform.rotation.eulerAngles.z + 90));
-        Instantiate(beamProjectile, transform.position + Vector3.down,
+        Instantiate(beamProjectile, transform.position + Vector3.up,
 Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 45, transform.rotation.eulerAngles.z + 90));
-        Instantiate(beamProjectile, transform.position + Vector3.down,
+        Instantiate(beamProjectile, transform.position + Vector3.up,
 Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 135, transform.rotation.eulerAngles.z + 90));
-        Instantiate(beamProjectile, transform.position + Vector3.down,
+        Instantiate(beamProjectile, transform.position + Vector3.up,
             Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + 90));
         /*
         float step = 5 * Time.deltaTime;
@@ -147,24 +169,41 @@ Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngle
 
     void WaveAttack()
     {
+        Instantiate(waveProjectile, centerOfRoom.position, centerOfRoom.rotation);
+        /*
         if (!waveSpawned)
         {
             waveSpawned = true;
             Instantiate(waveProjectile, centerOfRoom.position, centerOfRoom.rotation);
-        }
+        }*/
     }
 
     void HomingAttack()
     {
+        Instantiate(homingProjectile, transform.position + Vector3.up, transform.rotation);
+        /*
         if (!homingSpawned)
         {
             homingSpawned = true;
-            Instantiate(homingProjectile, transform.position, transform.rotation);
-        }
+            Instantiate(homingProjectile, transform.position + Vector3.up, transform.rotation);
+        }*/
     }
 
     void MineAttack() 
     {
+        mineSpawned = true;
+        float xMin = this.xMin.position.x;
+        float xMax = this.xMax.position.x;
+        float zMin = this.zMin.position.z;
+        float zMax = this.zMax.position.z;
+        Vector3 minePos;
+
+        for (int i = 0; i < numberOfMines; i++) {
+            minePos = new Vector3(Random.Range(xMin, xMax), 0, Random.Range(zMin, zMax));
+            Instantiate(minePrefab, minePos, transform.rotation);
+        }
+
+        /*
         if (!mineSpawned)
         {
             mineSpawned = true;
@@ -187,7 +226,7 @@ Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngle
             {
                 mineSpawned = false;
             }
-        }
+        }*/
     }
 
     void BuffAndHeal() 
@@ -203,5 +242,8 @@ Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngle
 
             EnemyHealth.HealUp(healAmount);
         }
+    }
+    public void Stun() {
+        stunned = true;
     }
 }

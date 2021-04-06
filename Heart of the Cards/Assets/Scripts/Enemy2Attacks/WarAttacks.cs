@@ -75,7 +75,7 @@ public class WarAttacks : MonoBehaviour
             attackTime = 0;
             anim.SetInteger("animState", 2);
 
-            int attack = Random.Range(1, 6);
+            int attack = Random.Range(0, 4);
             switch (attack)
             {
                 case 0:
@@ -108,18 +108,22 @@ public class WarAttacks : MonoBehaviour
     void RotationAttack()
     {
         //rotationSpawned = true;
-        Instantiate(rotatingProjPrefab, transform.position,
+        GameObject projectile = Instantiate(rotatingProjPrefab, transform.position + new Vector3(3, 2f, 0),
             Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 90,
             transform.rotation.eulerAngles.z + 90));
-        Instantiate(rotatingProjPrefab, transform.position,
+        projectile.transform.SetParent(gameObject.transform);
+        projectile = Instantiate(rotatingProjPrefab, transform.position + new Vector3(-3, 2f, 0),
             Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 180,
             transform.rotation.eulerAngles.z + 180));
-        Instantiate(rotatingProjPrefab, transform.position,
+        projectile.transform.SetParent(gameObject.transform);
+        projectile = Instantiate(rotatingProjPrefab, transform.position + new Vector3(0, 2f, 3),
             Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 270,
             transform.rotation.eulerAngles.z + 270));
-        Instantiate(rotatingProjPrefab, transform.position,
+        projectile.transform.SetParent(gameObject.transform);
+        projectile = Instantiate(rotatingProjPrefab, transform.position + new Vector3(0, 2f, -3),
             Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y,
             transform.rotation.eulerAngles.z));
+        projectile.transform.SetParent(gameObject.transform);
     }
 
     void MeleeAttack()
@@ -127,15 +131,15 @@ public class WarAttacks : MonoBehaviour
         if (distanceToPlayer <= attackDistance)
         {
             FaceTarget(player.transform.position);
-            Instantiate(meleePrefab, transform.position + Vector3.forward, transform.rotation);
+            Instantiate(meleePrefab, transform.position + Vector3.forward + Vector3.up, transform.rotation);
             anim.SetInteger("animState", 2);
 
         }
         else 
         {
             agent.SetDestination(player.transform.position);
-
             anim.SetInteger("animState", 3);
+            Invoke("MeleeAttack", 3);
         }
     }
 
@@ -144,7 +148,7 @@ public class WarAttacks : MonoBehaviour
         if (!waveSpawned)
         {
             //waveSpawned = true;
-            Instantiate(waveProjectile, transform.position, transform.rotation);
+            Instantiate(waveProjectile, transform.position + Vector3.up, transform.rotation);
         }
     }
 

@@ -15,13 +15,20 @@ public class CardController : MonoBehaviour
     public Text valueText;
     public int distanceToNextCard = 65;
     public float projectileCooldown = 2f;
-    public bool hasHand = true;
+    public bool hasHand = true; 
+    public int healAmount = -20; //MUST BE NEGATIVE
+    public GameObject player;
+    public int damageMultiplier = 2;
+    public GameObject enemy;
 
     bool canDiscard = true;
     float discardCDTimer = 0f;
     //int handValue;
     float timeElapsed = 0;
     Hand currentHand;
+    Suite flushSuite;// = Suite.None;
+    bool hasFlush = false;
+    bool hasDamageBuff = false;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +57,9 @@ public class CardController : MonoBehaviour
         printStorage(storage);
 
         UpdateHandText();
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
 
         //handValue = AddedValue(hand);
         //valueText.text = "Added Value: " + handValue;
@@ -151,6 +161,7 @@ public class CardController : MonoBehaviour
     }
 
     public void ThrowProjectile() {
+        HandleFlush();
         UnPrintHand(hand);
         hasHand = false;
     }
@@ -355,7 +366,11 @@ public class CardController : MonoBehaviour
             damage = 200;
         } 
 
-        var projectile = gameObject.GetComponentInChildren<FireProjectile>();
+        var projectile = gameObject.GetComponentInChildren<FireProjectile>(); 
+        if (hasDamageBuff) {
+            hasDamageBuff = false;
+            damage *= damageMultiplier;
+        }
         projectile.damage = damage;
     }
 
@@ -411,6 +426,7 @@ public class CardController : MonoBehaviour
         bool flush = CheckFlush(hand);
 
         if (straight && flush) {
+            hasFlush = true;
             if (HighCard(hand) == 1) {
                 return Hand.RoyalFlush;
             } else {
@@ -421,6 +437,7 @@ public class CardController : MonoBehaviour
         } else if (pairs == 1 && three) {
             return Hand.FullHouse;
         } else if (flush) {
+            hasFlush = true;
             return Hand.Flush;
         } else if (straight) {
             return Hand.Straight;
@@ -451,6 +468,7 @@ public class CardController : MonoBehaviour
                 return false;
             }
         }
+        flushSuite = suite;
         return true;
     }
 
@@ -465,6 +483,32 @@ public class CardController : MonoBehaviour
             }
         }
         return max;
+    }
+
+    void HandleFlush() {
+        if (hasFlush) {
+            switch (flushSuite) {
+                // case Suite.None:
+                //return; //Does nothing <3
+                case Suite.Heart:
+                    player.GetComponent<PlayerHealth>().TakeDamage(healAmount);
+                    //flushSuite = Suite.None;
+                    break;
+                case Suite.Diamond:
+                    player.GetComponent<PlayerHealth>().hasArmor = true;
+                    // flushSuite = Suite.None;
+                    break;
+                case Suite.Club:
+                    enemy.GetComponent<EnemyAttacks>().Stun();
+                    // flushSuite = Suite.None;
+                    break;
+                case Suite.Spade:
+                    hasDamageBuff = true;
+                    // flushSuite = Suite.None;
+                    break;
+            }
+            hasFlush = false;
+        }
     }
 }
 

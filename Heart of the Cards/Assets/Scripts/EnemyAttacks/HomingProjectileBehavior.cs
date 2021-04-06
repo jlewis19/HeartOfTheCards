@@ -23,7 +23,6 @@ public class HomingProjectileBehavior : MonoBehaviour
     {
         if (other.CompareTag("Cover"))
         {
-            print("destroy homing");
             Destroy(gameObject);
         }
         else if (other.CompareTag("Player"))
