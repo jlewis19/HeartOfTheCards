@@ -50,4 +50,10 @@ public class PlayerHealth : MonoBehaviour {
         transform.Rotate(-90, 0, 0, Space.Self);
         FindObjectOfType<LevelManager>().PlayerDies();
     }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.CompareTag("Enemy")) {
+            TakeDamage(10);
+        }
+    }
 }

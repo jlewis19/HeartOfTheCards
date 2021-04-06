@@ -41,6 +41,8 @@ public class WarAttacks : MonoBehaviour
     bool waveSpawned;
     bool dashSpawned;
     bool rotationSpawned;
+    bool dashing = false;
+    float dashTime = 0;
 
     float distanceToPlayer;
     bool isDead = false;
@@ -68,6 +70,10 @@ public class WarAttacks : MonoBehaviour
         if (attackTime >= animationCooldown)
         {
             anim.SetInteger("animState", 0);
+            if (dashing) {
+                agent.SetDestination(transform.position);
+                dashing = false;
+            }
         }
 
         if (attackTime >= attackCooldown)
@@ -128,19 +134,23 @@ public class WarAttacks : MonoBehaviour
 
     void MeleeAttack()
     {
+        agent.SetDestination(player.transform.position);
+        anim.SetInteger("animState", 3);
+        dashing = true;
+        
+        /*
         if (distanceToPlayer <= attackDistance)
         {
+            agent.speed = 0;
             FaceTarget(player.transform.position);
-            Instantiate(meleePrefab, transform.position + Vector3.forward + Vector3.up, transform.rotation);
+            //Instantiate(meleePrefab, transform.position + Vector3.forward + Vector3.up, transform.rotation);
             anim.SetInteger("animState", 2);
 
         }
         else 
         {
-            agent.SetDestination(player.transform.position);
-            anim.SetInteger("animState", 3);
-            Invoke("MeleeAttack", 3);
-        }
+            agent.speed = movementSpeed;
+        }*/
     }
 
     void WaveAttack()

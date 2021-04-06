@@ -2662,7 +2662,7 @@ MonoBehaviour:
     type: 3}
   meleePrefab: {fileID: 5289198871671080610, guid: cc8b8c582a5c2f74c84b3a2112d67c7c,
     type: 3}
-  waveProjectile: {fileID: 2179786877670841809, guid: 8edf71d6f4361354aba194ffeb4d3f8f,
+  waveProjectile: {fileID: 2179786877670841809, guid: b6430c8d6f9354a4eac226a18b3d23ee,
     type: 3}
   minionPrefab: {fileID: 9126361004066345579, guid: 718dc360ea7c27c4a8ef10c43a9f9007,
     type: 3}
@@ -3395,7 +3395,7 @@ RectTransform:
   - {fileID: 796683300}
   - {fileID: 967416087}
   m_Father: {fileID: 2008005849}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -5615,12 +5615,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 875462535}
-  m_RootOrder: 52
+  m_Father: {fileID: 2008005849}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -747.5, y: 73}
+  m_AnchoredPosition: {x: 90, y: 23}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &711984697
@@ -6719,7 +6719,6 @@ RectTransform:
   - {fileID: 1160594074}
   - {fileID: 1098411552}
   - {fileID: 848932830}
-  - {fileID: 711984696}
   m_Father: {fileID: 2008005849}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7949,7 +7948,7 @@ RectTransform:
   - {fileID: 2036692441}
   - {fileID: 899962850}
   m_Father: {fileID: 2008005849}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11050,7 +11049,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2008005849}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12318,7 +12317,7 @@ PrefabInstance:
     - target: {fileID: 1587605390882689377, guid: cdfa829913b749346b29a332240683f1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1587605390882689377, guid: cdfa829913b749346b29a332240683f1,
         type: 3}
@@ -12934,6 +12933,7 @@ RectTransform:
   - {fileID: 1381507899}
   - {fileID: 875462535}
   - {fileID: 1724105264}
+  - {fileID: 711984696}
   - {fileID: 607374710}
   - {fileID: 1631455509}
   - {fileID: 1078335707}
