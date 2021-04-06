@@ -44,11 +44,14 @@ public class MouseSensitivityManager : MonoBehaviour
 
     public void StartGame()
     {
+        Time.timeScale = 1f;
+        active = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void MainMenu()
-    {
+    public void MainMenu() {
+        Time.timeScale = 1f;
+        active = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

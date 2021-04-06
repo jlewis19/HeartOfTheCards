@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
         if (!gameOver) {
             gameOver = true;
             AudioSource.PlayClipAtPoint(loseSFX, player.transform.position);
+            gameOverText.text = "You lose :(";
             gameOverText.enabled = true;
             Invoke("LoadCurrentLevel", 2);
         }
