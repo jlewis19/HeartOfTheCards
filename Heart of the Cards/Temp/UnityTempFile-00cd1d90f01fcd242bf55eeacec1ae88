@@ -283,6 +283,9 @@
 Assets\Scripts\CameraController.cs
 Assets\Scripts\CardController.cs
 Assets\Scripts\DestroyObject.cs
+Assets\Scripts\Enemy2Attacks\MeleeBehavior.cs
+Assets\Scripts\Enemy2Attacks\RotationBehavior.cs
+Assets\Scripts\Enemy2Attacks\WarAttacks.cs
 Assets\Scripts\EnemyAttacks\AntiCampingProjectileBehavior.cs
 Assets\Scripts\EnemyAttacks\BeamAttackBehavior.cs
 Assets\Scripts\EnemyAttacks\EnemyAttacks.cs

@@ -25,7 +25,9 @@ public class EnemyHealth : MonoBehaviour
     void Update()
     {
         if (currentHealth <= 0) {
-            FindObjectOfType<LevelManager>().EnemyDies();
+            if (gameObject.CompareTag("Enemy")) {
+                FindObjectOfType<LevelManager>().EnemyDies();
+            }
             anim.SetInteger("animState", 1);
             Destroy(gameObject, 3);
         }

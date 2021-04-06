@@ -15,6 +15,7 @@ TagManager:
   - LevelManager
   - StoredCardsBG
   - HandTextBG
+  - Minion
   layers:
   - Default
   - TransparentFX
