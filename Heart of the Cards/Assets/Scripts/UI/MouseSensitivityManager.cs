@@ -10,6 +10,7 @@ public class MouseSensitivityManager : MonoBehaviour
     public Slider sensitivitySlider;
     public GameObject menu;
     public TextMeshProUGUI sensitivtyText;
+    public GameObject cards;
 
     public static bool active;
 
@@ -21,7 +22,7 @@ public class MouseSensitivityManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (active)
             {
@@ -41,6 +42,7 @@ public class MouseSensitivityManager : MonoBehaviour
         menu.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        cards.SetActive(false);
     }
 
     public void ResumeGame()
@@ -50,6 +52,7 @@ public class MouseSensitivityManager : MonoBehaviour
         menu.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        cards.SetActive(true);
     }
 
     public void UpdateSensitivity()
