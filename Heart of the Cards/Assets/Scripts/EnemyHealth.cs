@@ -7,13 +7,13 @@ public class EnemyHealth : MonoBehaviour
 {
     public int startingHealth = 100;
     public Slider healthBar;
-    Animator anim;
+    protected Animator anim;
     public AudioClip hitSFX;
 
     public int currentHealth;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         anim = GetComponent<Animator>();
         currentHealth = startingHealth;
@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (currentHealth <= 0) {
             if (gameObject.CompareTag("Enemy")) {
@@ -33,7 +33,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public void takeDamage(int amount) {
+    public virtual void takeDamage(int amount) {
         AudioSource.PlayClipAtPoint(hitSFX, transform.position);
         currentHealth -= amount;
         SetHealthBar();
