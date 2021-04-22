@@ -2047,6 +2047,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &272903662
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272903660}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.97395754, y: 0.6893815, z: 0.9384028}
+  m_Center: {x: -0.000000044703484, y: 0.34469074, z: 0.021643028}
 --- !u!1 &273528116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,11 +2522,24 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &297161391
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297161389}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.97395754, y: 0.6893815, z: 0.9384028}
+  m_Center: {x: -0.000000044703484, y: 0.34469074, z: 0.021643028}
 --- !u!1 &302530430
 GameObject:
   m_ObjectHideFlags: 0
@@ -8606,7 +8632,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14496
+  m_Name: pb_Mesh34682
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10122,7 +10148,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14440
+  m_Name: pb_Mesh34626
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10571,6 +10597,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &839635825
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839635823}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9287865, y: 0.691215, z: 0.95565367}
+  m_Center: {x: -0.000000029802322, y: 0.3456075, z: 0.030756906}
 --- !u!1 &848932829
 GameObject:
   m_ObjectHideFlags: 0
@@ -11011,6 +11050,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &858222468
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858222466}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9287865, y: 0.691215, z: 0.95565367}
+  m_Center: {x: -0.000000029802322, y: 0.3456075, z: 0.030756906}
 --- !u!1 &871416126
 GameObject:
   m_ObjectHideFlags: 0
@@ -12923,6 +12975,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1052019241
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052019239}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9461575, y: 0.6923272, z: 0.9527255}
+  m_Center: {x: -0.00000014901161, y: 0.3461636, z: 0.027908102}
 --- !u!1 &1057595362
 GameObject:
   m_ObjectHideFlags: 0
@@ -16106,7 +16171,7 @@ MonoBehaviour:
   attackSFX: {fileID: 0}
   homingPrefab: {fileID: 8695976620132270002, guid: 70d0ef2489c98d443b92fd5edb8f8fc8,
     type: 3}
-  stunPrefab: {fileID: 1052576151892377746, guid: 858fd12e51fd37f49aaf383056fbdf9a,
+  stunPrefab: {fileID: 5551197335485236764, guid: 664de4eb16601e6468a33958eb79a61c,
     type: 3}
   beamPrefab: {fileID: 2263594555978163171, guid: 1156e7e6c4ce30b4d9bac8585087f5be,
     type: 3}
@@ -18150,6 +18215,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1878261386
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878261384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9461575, y: 0.6923272, z: 0.9527255}
+  m_Center: {x: -0.00000014901161, y: 0.3461636, z: 0.027908102}
 --- !u!1 &1878917101
 GameObject:
   m_ObjectHideFlags: 0
@@ -19166,7 +19244,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1538
+  m_Name: pb_Mesh-75920
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19820,6 +19898,8 @@ MonoBehaviour:
   dashCooldown: 3
   dashTime: 0.15
   dashSFX: {fileID: 8300000, guid: 1ff139085f007a5479e3b6dd27643e97, type: 3}
+  stunDuration: 2
+  isStunned: 0
 --- !u!143 &2143901829
 CharacterController:
   m_ObjectHideFlags: 0

@@ -8,12 +8,15 @@ public class PlayerController : MonoBehaviour {
     public float dashCooldown = 3f;
     public float dashTime = 0.15f;
     public AudioClip dashSFX;
+    public float stunDuration = 2f;
+    public bool isStunned = false;
 
     CharacterController controller;
     Vector3 input, moveDirection;
     bool canDash = true;
     public static bool dashing = false;
     float dashCooldownTimer = 0f;
+    float stunTimer;
 
     float y;
 
@@ -21,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     void Start() {
         controller = GetComponent<CharacterController>();
         y = transform.position.y;
+        stunTimer = stunDuration;
     }
 
     // Update is called once per frame
@@ -29,6 +33,16 @@ public class PlayerController : MonoBehaviour {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
+        if (isStunned)
+        {
+            stunTimer -= Time.deltaTime;
+            if (stunTimer <= 0)
+            {
+                isStunned = false;
+                stunTimer = stunDuration;
+            }
+            return;
+        }
         if (!canDash && !dashing)
         {
             dashCooldownTimer += Time.deltaTime;
