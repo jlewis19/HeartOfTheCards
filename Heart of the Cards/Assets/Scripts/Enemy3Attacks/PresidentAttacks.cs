@@ -60,16 +60,25 @@ public class PresidentAttacks : MonoBehaviour
             switch (attack)
             {
                 case 0:
-                    
+                    HomingProjectile();
                     break;
                 case 1:
-                    
-                    
+                    StunProjectile();
                     break;
                 case 2:
                     
                     break;
             }
         }
+    }
+
+    void HomingProjectile()
+    {
+        Instantiate(homingPrefab, transform.position + Vector3.up, transform.rotation);
+    }
+
+    void StunProjectile()
+    {
+        Instantiate(stunPrefab, transform.position + Vector3.up, transform.rotation);
     }
 }

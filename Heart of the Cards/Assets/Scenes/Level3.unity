@@ -16089,6 +16089,26 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 666773296}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1545535795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545535794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffdb77a5d8138c940805122fcaf3bcc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 5
+  animationCooldown: 2
+  attackSFX: {fileID: 0}
+  homingPrefab: {fileID: 8695976620132270002, guid: 70d0ef2489c98d443b92fd5edb8f8fc8,
+    type: 3}
+  stunPrefab: {fileID: 1052576151892377746, guid: 858fd12e51fd37f49aaf383056fbdf9a,
+    type: 3}
+  stunDuration: 3
 --- !u!4 &1545535796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08730462c45a9da4cb6dbe41c8e3d579,
