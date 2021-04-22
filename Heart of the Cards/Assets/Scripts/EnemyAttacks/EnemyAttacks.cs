@@ -12,7 +12,7 @@ public class EnemyAttacks : MonoBehaviour
 
     [Header("Boss Attack Damage Values")]
     public static int AntiCampingProjectileDamage = 10;
-    public static int BeamDamage = 2;
+    public static int BeamDamage = 5;
     public static int WaveDamage = 20;
     public static int HomingDamage = 10;
     public static int MineDamage = 30;

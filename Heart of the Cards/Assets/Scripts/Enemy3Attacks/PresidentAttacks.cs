@@ -17,6 +17,13 @@ public class PresidentAttacks : MonoBehaviour
     [Header("Projectile Prefabs")]
     public GameObject homingPrefab;
     public GameObject stunPrefab;
+    public GameObject beamPrefab;
+
+    [Header("Position Fields")]
+    public Transform xMin;
+    public Transform xMax;
+    public Transform zMin;
+    public Transform zMax;
 
     [Header("Stun stuff :)")]
     public float stunDuration = 3.0f;
@@ -50,13 +57,14 @@ public class PresidentAttacks : MonoBehaviour
                 return;
             }
         }
+        attackTime += Time.deltaTime;
         if (attackTime >= attackCooldown)
         {
             attackTime = 0;
             //anim.SetInteger("animState", 2);
             //AudioSource.PlayClipAtPoint(attackSFX, Camera.main.transform.position);
 
-            int attack = Random.Range(0, 2);
+            int attack = Random.Range(0, 3);
             switch (attack)
             {
                 case 0:
@@ -66,7 +74,7 @@ public class PresidentAttacks : MonoBehaviour
                     StunProjectile();
                     break;
                 case 2:
-                    
+                    FloorAttack();
                     break;
             }
         }
@@ -80,5 +88,17 @@ public class PresidentAttacks : MonoBehaviour
     void StunProjectile()
     {
         Instantiate(stunPrefab, transform.position + Vector3.up, transform.rotation);
+    }
+    void FloorAttack() {
+        for (int i = 0; i < 10; i++) {
+            Invoke("InstantiateBeam", (float) i / 2);
+        }
+    }
+
+    void InstantiateBeam() {
+        Vector3 beamPos = new Vector3(Random.Range(this.xMin.position.x, this.xMax.position.x), 0,
+            Random.Range(this.zMin.position.z, this.zMax.position.z));
+        GameObject beam = Instantiate(beamPrefab, beamPos, transform.rotation);
+        beam.transform.localScale = new Vector3(beam.transform.localScale.x * 5f, beam.transform.localScale.y * 1f, beam.transform.localScale.z * 5f);
     }
 }
