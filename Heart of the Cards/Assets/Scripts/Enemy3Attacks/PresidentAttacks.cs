@@ -12,7 +12,7 @@ public class PresidentAttacks : MonoBehaviour
     [Header("Boss Attack Damage Values")]
     public static int homingDamage = 10;
     public static int stunDamage = 5;
-    public static float stunDuration = 2f;
+    public static float stunProjDuration = 2f;
 
     [Header("Projectile Prefabs")]
     public GameObject homingPrefab;
