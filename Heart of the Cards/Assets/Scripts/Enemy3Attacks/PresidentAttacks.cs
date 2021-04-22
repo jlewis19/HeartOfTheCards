@@ -87,6 +87,7 @@ public class PresidentAttacks : MonoBehaviour
 
     void StunProjectile()
     {
+        //Quaternion rotato = stunPrefab.transform.rotation;
         Instantiate(stunPrefab, transform.position + Vector3.up, transform.rotation);
     }
     void FloorAttack() {
