@@ -2018,8 +2018,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sofa_1
       objectReference: {fileID: 0}
+    - target: {fileID: 242142670469560878, guid: 1635495ff86484a4280d3eb3be6d8b0c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1635495ff86484a4280d3eb3be6d8b0c, type: 3}
+--- !u!1 &272903660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 242142670469560878, guid: 1635495ff86484a4280d3eb3be6d8b0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 272903659}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &272903661
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272903660}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &273528116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,8 +2485,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sofa_1
       objectReference: {fileID: 0}
+    - target: {fileID: 242142670469560878, guid: 1635495ff86484a4280d3eb3be6d8b0c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1635495ff86484a4280d3eb3be6d8b0c, type: 3}
+--- !u!1 &297161389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 242142670469560878, guid: 1635495ff86484a4280d3eb3be6d8b0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 297161388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &297161390
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297161389}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &302530430
 GameObject:
   m_ObjectHideFlags: 0
@@ -10418,6 +10472,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sofa_2
       objectReference: {fileID: 0}
+    - target: {fileID: 1358929116085333435, guid: 834a7e08044e40e42aa5b133397ca58d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
+      objectReference: {fileID: 0}
     - target: {fileID: 1358929116085367195, guid: 834a7e08044e40e42aa5b133397ca58d,
         type: 3}
       propertyPath: m_RootOrder
@@ -10490,6 +10549,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 834a7e08044e40e42aa5b133397ca58d, type: 3}
+--- !u!1 &839635823 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1358929116085333435, guid: 834a7e08044e40e42aa5b133397ca58d,
+    type: 3}
+  m_PrefabInstance: {fileID: 839635822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &839635824
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839635823}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &848932829
 GameObject:
   m_ObjectHideFlags: 0
@@ -10831,6 +10912,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sofa_2
       objectReference: {fileID: 0}
+    - target: {fileID: 1358929116085333435, guid: 834a7e08044e40e42aa5b133397ca58d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
+      objectReference: {fileID: 0}
     - target: {fileID: 1358929116085367195, guid: 834a7e08044e40e42aa5b133397ca58d,
         type: 3}
       propertyPath: m_RootOrder
@@ -10903,6 +10989,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 834a7e08044e40e42aa5b133397ca58d, type: 3}
+--- !u!1 &858222466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1358929116085333435, guid: 834a7e08044e40e42aa5b133397ca58d,
+    type: 3}
+  m_PrefabInstance: {fileID: 858222465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &858222467
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858222466}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &871416126
 GameObject:
   m_ObjectHideFlags: 0
@@ -12786,8 +12894,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sofa_4
       objectReference: {fileID: 0}
+    - target: {fileID: 5859802785421469854, guid: 346812373dd8f36448dc27104195de15,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 346812373dd8f36448dc27104195de15, type: 3}
+--- !u!1 &1052019239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5859802785421469854, guid: 346812373dd8f36448dc27104195de15,
+    type: 3}
+  m_PrefabInstance: {fileID: 1052019238}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1052019240
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052019239}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1057595362
 GameObject:
   m_ObjectHideFlags: 0
@@ -17960,8 +18095,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sofa_4
       objectReference: {fileID: 0}
+    - target: {fileID: 5859802785421469854, guid: 346812373dd8f36448dc27104195de15,
+        type: 3}
+      propertyPath: m_TagString
+      value: Cover
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 346812373dd8f36448dc27104195de15, type: 3}
+--- !u!1 &1878261384 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5859802785421469854, guid: 346812373dd8f36448dc27104195de15,
+    type: 3}
+  m_PrefabInstance: {fileID: 1878261383}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1878261385
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1878261384}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1878917101
 GameObject:
   m_ObjectHideFlags: 0
