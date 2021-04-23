@@ -175,10 +175,6 @@ public class MinionAI : MonoBehaviour {
         Debug.DrawLine(enemyEyes.position, rightRayPoint, Color.yellow);
     }
 
-    private void OnDestroy() {
-        //Instantiate(deadVFX, deadTransform.position, deadTransform.rotation);
-    }
-
     bool IsPlayerInClearFOV() {
         RaycastHit hit;
         Vector3 directionToPlayer = player.transform.position - enemyEyes.position;

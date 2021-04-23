@@ -36,14 +36,7 @@ public class WarAttacks : MonoBehaviour
     GameObject player;
     NavMeshAgent agent;
 
-
-    bool goonsSpawned;
-    bool waveSpawned;
-    bool dashSpawned;
-    bool rotationSpawned;
     bool dashing = false;
-    float dashTime = 0;
-
     float distanceToPlayer;
     bool isDead = false;
 
@@ -113,7 +106,6 @@ public class WarAttacks : MonoBehaviour
 
     void RotationAttack()
     {
-        //rotationSpawned = true;
         GameObject projectile = Instantiate(rotatingProjPrefab, transform.position + new Vector3(3, 2f, 0),
             Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 90,
             transform.rotation.eulerAngles.z + 90));
@@ -137,56 +129,24 @@ public class WarAttacks : MonoBehaviour
         agent.SetDestination(player.transform.position);
         anim.SetInteger("animState", 3);
         dashing = true;
-        
-        /*
-        if (distanceToPlayer <= attackDistance)
-        {
-            agent.speed = 0;
-            FaceTarget(player.transform.position);
-            //Instantiate(meleePrefab, transform.position + Vector3.forward + Vector3.up, transform.rotation);
-            anim.SetInteger("animState", 2);
-
-        }
-        else 
-        {
-            agent.speed = movementSpeed;
-        }*/
     }
 
-    void WaveAttack()
-    {
-        if (!waveSpawned)
-        {
-            //waveSpawned = true;
-            Instantiate(waveProjectile, transform.position + Vector3.up, transform.rotation);
-        }
+    void WaveAttack() {
+        Instantiate(waveProjectile, transform.position + Vector3.up, transform.rotation);
     }
 
     void SpawnGoons() 
     {
-        if (!goonsSpawned)
-        {
-            //goonsSpawned = true;
-            float xMin = this.xMin.position.x;
-            float xMax = this.xMax.position.x;
-            float zMin = this.zMin.position.z;
-            float zMax = this.zMax.position.z;
-            Vector3 minePos;
+        float xMin = this.xMin.position.x;
+        float xMax = this.xMax.position.x;
+        float zMin = this.zMin.position.z;
+        float zMax = this.zMax.position.z;
+        Vector3 minePos;
 
-            for (int i = 0; i < minionNumber; i++)
-            {
-                minePos = new Vector3(Random.Range(xMin, xMax), 0, Random.Range(zMin, zMax));
-                Instantiate(minionPrefab, minePos, transform.rotation);
-            }
-        }/*
-
-        else
-        {
-            if (GameObject.FindGameObjectWithTag("Enemy") < mini)
-            {
-                goonsSpawned = false;
-            }
-        }*/
+        for (int i = 0; i < minionNumber; i++) {
+            minePos = new Vector3(Random.Range(xMin, xMax), 0, Random.Range(zMin, zMax));
+            Instantiate(minionPrefab, minePos, transform.rotation);
+        }
     }
 
     void FaceTarget(Vector3 target)
