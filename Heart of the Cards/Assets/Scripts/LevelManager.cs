@@ -25,13 +25,7 @@ public class LevelManager : MonoBehaviour
         playerHealth = player.GetComponent<PlayerHealth>();
         gameOverText.enabled = false;
     }
-    /*
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }*/
     public void PlayerDies()
     {
         if (!gameOver) {
@@ -58,6 +52,8 @@ public class LevelManager : MonoBehaviour
     }
 
     void LoadNextLevel() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int level = SceneManager.GetActiveScene().buildIndex + 1;
+        PlayerPrefs.SetInt("currentLevel", level);
+        SceneManager.LoadScene(level);
     }
 }
