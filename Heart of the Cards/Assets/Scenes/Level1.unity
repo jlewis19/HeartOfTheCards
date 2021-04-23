@@ -16621,7 +16621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numDecks: 1
-  discardCooldown: 2
+  discardCooldown: 0.5
   handText: {fileID: 796683301}
   valueText: {fileID: 967416088}
   distanceToNextCard: 65

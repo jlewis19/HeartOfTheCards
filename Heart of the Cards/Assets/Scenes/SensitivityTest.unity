@@ -12885,6 +12885,8 @@ MonoBehaviour:
   dashCooldown: 3
   dashTime: 0.15
   dashSFX: {fileID: 8300000, guid: 1ff139085f007a5479e3b6dd27643e97, type: 3}
+  stunDuration: 2
+  isStunned: 0
 --- !u!143 &2143901829
 CharacterController:
   m_ObjectHideFlags: 0
@@ -12933,7 +12935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numDecks: 1
-  discardCooldown: 2
+  discardCooldown: 0.5
   handText: {fileID: 1739208496}
   valueText: {fileID: 1985702679}
   distanceToNextCard: 65

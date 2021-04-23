@@ -42,13 +42,14 @@ public class PresidentAttacks : MonoBehaviour
     public AudioClip beamSound;
     public AudioClip rapidfire;
 
-
+    Animator anim;
     GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -74,11 +75,13 @@ public class PresidentAttacks : MonoBehaviour
             }
         }
         attackTime += Time.deltaTime;
+        if (attackTime >= animationCooldown) {
+            anim.SetInteger("animState", 0);
+        }
         if (attackTime >= attackCooldown)
         {
             attackTime = 0;
-            //anim.SetInteger("animState", 2);
-            //AudioSource.PlayClipAtPoint(attackSFX, Camera.main.transform.position);
+            anim.SetInteger("animState", 2);
 
             int attack = Random.Range(0, 4);
             switch (attack)
@@ -118,8 +121,6 @@ public class PresidentAttacks : MonoBehaviour
 
     void SpiralAttack()
     {
-        
-
         for (float i = 0; i < spiralDuration; i++) 
         {
             Invoke("InstantiateSpiral", i / 8);
