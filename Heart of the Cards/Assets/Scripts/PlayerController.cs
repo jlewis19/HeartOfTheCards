@@ -81,14 +81,5 @@ public class PlayerController : MonoBehaviour {
         moveDirection = Vector3.Lerp(moveDirection, input, Time.deltaTime);
 
         controller.Move(input * Time.deltaTime);
-
-        /*
-        input = (transform.right * moveHorizontal + transform.forward * moveVertical).normalized;
-        input *= moveSpeed;
-        input.y = moveDirection.y;
-        moveDirection = Vector3.Lerp(moveDirection, input, Time.deltaTime);
-
-        controller.Move(input * Time.deltaTime);
-        */
     }
 }

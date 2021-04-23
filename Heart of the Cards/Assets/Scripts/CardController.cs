@@ -16,17 +16,16 @@ public class CardController : MonoBehaviour
     public int distanceToNextCard = 65;
     public float projectileCooldown = 2f;
     public bool hasHand = true; 
-    public int healAmount = -20; //MUST BE NEGATIVE
+    public int healAmount = -20; // must be negative
     public GameObject player;
     public int damageMultiplier = 2;
     public GameObject enemy;
 
     bool canDiscard = true;
     float discardCDTimer = 0f;
-    //int handValue;
     float timeElapsed = 0;
     Hand currentHand;
-    Suite flushSuite;// = Suite.None;
+    Suite flushSuite;
     bool hasFlush = false;
     bool hasDamageBuff = false;
 
@@ -42,7 +41,6 @@ public class CardController : MonoBehaviour
 
         //Deal first hand
         Deal(5, hand);
-        //handText.text = printHand(hand);
         printHand(hand);
         currentHand = FindHand(hand);
         print(currentHand);
@@ -60,9 +58,6 @@ public class CardController : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
         enemy = GameObject.FindGameObjectWithTag("Enemy");
-
-        //handValue = AddedValue(hand);
-        //valueText.text = "Added Value: " + handValue;
     }
 
     // Update is called once per frame
@@ -88,7 +83,6 @@ public class CardController : MonoBehaviour
             }
         }
 
-        //TODO: Make it so that the user can discard more than 1 card at a time
         if (canDiscard) {
             HandleDiscard();
         } else {
@@ -185,7 +179,6 @@ public class CardController : MonoBehaviour
         int z = 0;
         foreach(Card c in hand)
         {
-            //Debug.Log(c.printCard());
             GameObject card = GameObject.Find(c.printCard());
 
             Canvas canvas;
@@ -229,7 +222,6 @@ public class CardController : MonoBehaviour
     }
 
     //Handles user input related to discarding cards from your hand
-    //TODO: FIX THIS TERRIBLE CODE
     private void HandleDiscard() {
         if (CheckStorage()) {
             return;
@@ -280,10 +272,6 @@ public class CardController : MonoBehaviour
             UpdateProjectileDamage(currentHand);
 
             UpdateHandText();
-
-            /*
-            handValue = AddedValue(hand);
-            valueText.text = "Added Value: " + handValue;*/
         }
     }
 
@@ -488,23 +476,17 @@ public class CardController : MonoBehaviour
     void HandleFlush() {
         if (hasFlush) {
             switch (flushSuite) {
-                // case Suite.None:
-                //return; //Does nothing <3
                 case Suite.Heart:
                     player.GetComponent<PlayerHealth>().TakeDamage(healAmount);
-                    //flushSuite = Suite.None;
                     break;
                 case Suite.Diamond:
                     player.GetComponent<PlayerHealth>().hasArmor = true;
-                    // flushSuite = Suite.None;
                     break;
                 case Suite.Club:
                     enemy.GetComponent<EnemyAttacks>().Stun();
-                    // flushSuite = Suite.None;
                     break;
                 case Suite.Spade:
                     hasDamageBuff = true;
-                    // flushSuite = Suite.None;
                     break;
             }
             hasFlush = false;

@@ -3469,7 +3469,7 @@ MonoBehaviour:
   attackSFX: {fileID: 8300000, guid: 57d7fc7d60bd78a49b540b07dd79b878, type: 3}
   antiCampingProjectile: {fileID: 6846473951729143905, guid: ce746b6a857bf4e4a8b9825168b2c687,
     type: 3}
-  beamProjectile: {fileID: 2263594555978163171, guid: 1156e7e6c4ce30b4d9bac8585087f5be,
+  beamProjectile: {fileID: 2263594555978163171, guid: 522fb37194c35504fae762c8d068c2eb,
     type: 3}
   waveProjectile: {fileID: 2179786877670841809, guid: 8edf71d6f4361354aba194ffeb4d3f8f,
     type: 3}
@@ -16571,6 +16571,8 @@ MonoBehaviour:
   dashCooldown: 3
   dashTime: 0.15
   dashSFX: {fileID: 8300000, guid: 1ff139085f007a5479e3b6dd27643e97, type: 3}
+  stunDuration: 2
+  isStunned: 0
 --- !u!143 &2143901829
 CharacterController:
   m_ObjectHideFlags: 0

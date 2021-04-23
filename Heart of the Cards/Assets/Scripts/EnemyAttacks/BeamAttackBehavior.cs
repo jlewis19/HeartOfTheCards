@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BeamAttackBehavior : MonoBehaviour
 {
+    public float length = 17f;
     float beamTickTimer = 0f;
     bool doDamage = true;
 
@@ -25,8 +26,7 @@ public class BeamAttackBehavior : MonoBehaviour
                 doDamage = true;
             }
         }
-        //transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(3f, 17f, 4.5f), Time.deltaTime * EnemyAttacks.beamSpeed);
-        transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(transform.localScale.x, 30f, transform.localScale.z), Time.deltaTime * EnemyAttacks.beamSpeed);
+        transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(transform.localScale.x, length, transform.localScale.z), Time.deltaTime * EnemyAttacks.beamSpeed);
     }
 
     private void OnTriggerStay(Collider other)

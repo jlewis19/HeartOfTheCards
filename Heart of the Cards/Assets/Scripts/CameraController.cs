@@ -5,8 +5,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     Transform playerBody;
-    //public float mouseSensitivity = 100f;
     float pitch = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
