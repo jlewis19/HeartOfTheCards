@@ -12248,7 +12248,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6e33ce0173fc73e4b9a199f12f4630f5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e1d22120318960a4e90aef537714b2de, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.238
   m_Pitch: 1
@@ -16215,6 +16215,9 @@ MonoBehaviour:
   spiralDuration: 25
   frontSpawnPoint: {fileID: 733780542}
   backSpawnPoint: {fileID: 2092550452}
+  projSound: {fileID: 8300000, guid: 68e07daec09146848b41aa3371bc51d2, type: 3}
+  beamSound: {fileID: 8300000, guid: c962f8617084c264a955a11542344b88, type: 3}
+  rapidfire: {fileID: 8300000, guid: abf900e62b702fc45b064b9acdd7d085, type: 3}
 --- !u!4 &1545535796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08730462c45a9da4cb6dbe41c8e3d579,

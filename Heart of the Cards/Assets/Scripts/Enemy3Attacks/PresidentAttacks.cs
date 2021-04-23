@@ -37,6 +37,12 @@ public class PresidentAttacks : MonoBehaviour
     public Transform frontSpawnPoint;
     public Transform backSpawnPoint;
 
+    [Header("Sounds")]
+    public AudioClip projSound;
+    public AudioClip beamSound;
+    public AudioClip rapidfire;
+
+
     GameObject player;
 
     // Start is called before the first frame update
@@ -95,11 +101,13 @@ public class PresidentAttacks : MonoBehaviour
 
     void HomingProjectile()
     {
+        AudioSource.PlayClipAtPoint(projSound, transform.position);
         Instantiate(homingPrefab, transform.position + Vector3.up, transform.rotation);
     }
 
     void StunProjectile()
     {
+        AudioSource.PlayClipAtPoint(projSound, transform.position);
         Instantiate(stunPrefab, transform.position + Vector3.up, transform.rotation);
     }
     void FloorAttack() {
@@ -121,12 +129,14 @@ public class PresidentAttacks : MonoBehaviour
     void InstantiateBeam() {
         Vector3 beamPos = new Vector3(Random.Range(this.xMin.position.x, this.xMax.position.x), 0,
             Random.Range(this.zMin.position.z, this.zMax.position.z));
+        AudioSource.PlayClipAtPoint(beamSound, beamPos);
         GameObject beam = Instantiate(beamPrefab, beamPos, transform.rotation);
         beam.transform.localScale = new Vector3(beam.transform.localScale.x * 5f, beam.transform.localScale.y * 1f, beam.transform.localScale.z * 5f);
     }
 
     void InstantiateSpiral() 
     {
+        AudioSource.PlayClipAtPoint(rapidfire, transform.position);
         Instantiate(spiralPrefab, frontSpawnPoint.position + Vector3.forward, transform.rotation);
         Instantiate(spiralPrefab, backSpawnPoint.position + Vector3.back, transform.rotation);
     }
