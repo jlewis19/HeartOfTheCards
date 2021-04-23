@@ -13,11 +13,13 @@ public class PresidentAttacks : MonoBehaviour
     public static int homingDamage = 10;
     public static int stunDamage = 5;
     public static float stunProjDuration = 2f;
+    public static int spiralDamage = 10;
 
     [Header("Projectile Prefabs")]
     public GameObject homingPrefab;
     public GameObject stunPrefab;
     public GameObject beamPrefab;
+    public GameObject spiralPrefab;
 
     [Header("Position Fields")]
     public Transform xMin;
@@ -30,6 +32,17 @@ public class PresidentAttacks : MonoBehaviour
     bool stunned = false;
     float timer = 0;
 
+    [Header("Spiral Attack Info")]
+    public float spiralDuration = 5f;
+    public Transform frontSpawnPoint;
+    public Transform backSpawnPoint;
+
+    [Header("Sounds")]
+    public AudioClip projSound;
+    public AudioClip beamSound;
+    public AudioClip rapidfire;
+
+
     GameObject player;
 
     // Start is called before the first frame update
@@ -41,6 +54,9 @@ public class PresidentAttacks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        frontSpawnPoint.RotateAround(this.transform.position, Vector3.up, 90f * Time.deltaTime);
+        backSpawnPoint.RotateAround(this.transform.position, Vector3.up, 90f * Time.deltaTime);
+
         Vector3 target = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         transform.LookAt(target);
         if (stunned)
@@ -64,7 +80,7 @@ public class PresidentAttacks : MonoBehaviour
             //anim.SetInteger("animState", 2);
             //AudioSource.PlayClipAtPoint(attackSFX, Camera.main.transform.position);
 
-            int attack = Random.Range(0, 3);
+            int attack = Random.Range(0, 4);
             switch (attack)
             {
                 case 0:
@@ -76,17 +92,22 @@ public class PresidentAttacks : MonoBehaviour
                 case 2:
                     FloorAttack();
                     break;
+                case 3:
+                    SpiralAttack();
+                    break;
             }
         }
     }
 
     void HomingProjectile()
     {
+        AudioSource.PlayClipAtPoint(projSound, transform.position);
         Instantiate(homingPrefab, transform.position + Vector3.up, transform.rotation);
     }
 
     void StunProjectile()
     {
+        AudioSource.PlayClipAtPoint(projSound, transform.position);
         Instantiate(stunPrefab, transform.position + Vector3.up, transform.rotation);
     }
     void FloorAttack() {
@@ -95,10 +116,28 @@ public class PresidentAttacks : MonoBehaviour
         }
     }
 
+    void SpiralAttack()
+    {
+        
+
+        for (float i = 0; i < spiralDuration; i++) 
+        {
+            Invoke("InstantiateSpiral", i / 8);
+        }
+    }
+
     void InstantiateBeam() {
         Vector3 beamPos = new Vector3(Random.Range(this.xMin.position.x, this.xMax.position.x), 0,
             Random.Range(this.zMin.position.z, this.zMax.position.z));
+        AudioSource.PlayClipAtPoint(beamSound, beamPos);
         GameObject beam = Instantiate(beamPrefab, beamPos, transform.rotation);
         beam.transform.localScale = new Vector3(beam.transform.localScale.x * 5f, beam.transform.localScale.y * 1f, beam.transform.localScale.z * 5f);
+    }
+
+    void InstantiateSpiral() 
+    {
+        AudioSource.PlayClipAtPoint(rapidfire, transform.position);
+        Instantiate(spiralPrefab, frontSpawnPoint.position + Vector3.forward, transform.rotation);
+        Instantiate(spiralPrefab, backSpawnPoint.position + Vector3.back, transform.rotation);
     }
 }
