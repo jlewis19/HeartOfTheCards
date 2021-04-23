@@ -333,7 +333,7 @@ public class CardController : MonoBehaviour
     void UpdateProjectileDamage(Hand handVal) {
         int damage;
         if (handVal == Hand.HighCard) {
-            damage = 5;
+            damage = 2;
         } else if (handVal == Hand.Pair) {
             damage = 10;
         } else if (handVal == Hand.TwoPair) {
