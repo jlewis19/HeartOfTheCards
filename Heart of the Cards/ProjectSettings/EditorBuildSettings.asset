@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 4dc6eadc30e5d8941ab14790ac2c6f44
   - enabled: 1
+    path: Assets/Scenes/BeginningText.unity
+    guid: 26029b3b1401fa54aa44a7f5f4ef0707
+  - enabled: 1
     path: Assets/Scenes/SensitivityTest.unity
     guid: ae80d77a15404e54f948dc9d494d00e7
   - enabled: 1
@@ -17,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: c846f86ca5054374da03f1ffdb396ebd
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: cd8e7d1d62113f9419ca24845a1ffbdc
+  - enabled: 1
+    path: Assets/Scenes/EndingLines.unity
+    guid: 36adb79480729774286a4f2662a63b40
   m_configObjects: {}
