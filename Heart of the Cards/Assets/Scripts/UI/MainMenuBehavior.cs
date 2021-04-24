@@ -13,6 +13,7 @@ public class MainMenuBehavior : MonoBehaviour
     public void Continue() {
         int level = PlayerPrefs.GetInt("currentLevel", SceneManager.GetActiveScene().buildIndex + 1);
         PlayerPrefs.SetInt("currentLevel", level);
+        PlayerPrefs.Save();
         SceneManager.LoadScene(level);
     }
 

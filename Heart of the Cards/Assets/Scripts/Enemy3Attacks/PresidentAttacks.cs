@@ -55,6 +55,7 @@ public class PresidentAttacks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         frontSpawnPoint.RotateAround(this.transform.position, Vector3.up, 90f * Time.deltaTime);
         backSpawnPoint.RotateAround(this.transform.position, Vector3.up, 90f * Time.deltaTime);
 
